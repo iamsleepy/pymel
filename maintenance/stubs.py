@@ -16,11 +16,6 @@ import re
 import types
 import json
 
-from future.utils import PY2
-
-if PY2:
-    ast.Try = ast.TryExcept
-
 OBJ = 0
 OBJTYPE = 1
 SOURCEMOD = 2
@@ -37,13 +32,7 @@ def _hashable(x):
     return True
 
 builtin_objs = set(x for x in builtins.__dict__.values() if _hashable(x))
-if PY2:
-    import __builtin__
-    builtin_objs.update(x[0] for x in inspect.getmembers(__builtin__,
-                                                         _hashable))
-    bytes = str
-else:
-    basestring = str
+basestring = str
 
 verbose = False
 
@@ -158,8 +147,6 @@ def get_source_module(obj, default):
     mod = inspect.getmodule(obj)
     if mod == builtins and obj in builtin_objs:
         return mod
-    if PY2 and mod == __builtins__ and obj in builtin_objs:
-        return mod
     if (not mod or inspect.isbuiltin(obj) or pydoc.isdata(obj)
             or not mod.__name__ or mod.__name__.startswith('_')):
         mod = default
@@ -185,6 +172,7 @@ def get_unique_name(basename=None, all_names=()):
     return name
 
 
+# Todo: Remove this, py2 legacy function
 def get_class(obj):
     '''Retrieves the class of the given object.
 
@@ -193,10 +181,8 @@ def get_class(obj):
     `re.Pattern` instances, and type() doesn't work on old-style
     classes...
     '''
-    cls = type(obj)
-    if PY2 and cls is types.InstanceType:
-        cls = obj.__class__
-    return cls
+    return type(obj)
+
 
 
 def has_default_constructor(cls):
@@ -462,8 +448,7 @@ class StubDoc(pydoc.Doc):
     }
 
     SIMPLE_TYPES = (str, bytes, bool, int, float, complex)
-    if PY2:
-        SIMPLE_TYPES += (unicode,)
+
     PASS = 'pass'
     UNKNOWN_SIGNATURE = '(*args, **kwargs)'
 

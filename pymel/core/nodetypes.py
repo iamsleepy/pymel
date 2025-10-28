@@ -42,7 +42,7 @@ from pymel.core import windows
 from pymel.core.animation import listAnimatable as _listAnimatable
 from pymel.core.system import namespaceInfo as _namespaceInfo, FileReference as _FileReference
 from pymel.util.enum import Enum
-from future.utils import PY2, with_metaclass
+from future.utils import with_metaclass
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
@@ -404,10 +404,6 @@ class DependNode(with_metaclass(_factories.MetaMayaTypeRegistry, general.PyNode)
     def __str__(self):
         # type: () -> str
         return "%s" % self.name()
-
-    if PY2:
-        def __unicode__(self):
-            return u"%s" % self.name()
 
     def __hash__(self):
         # type: () -> int

@@ -6,13 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from future.utils import PY2, with_metaclass
-
-# 2to3: remove switch when python-3 only
-if PY2:
-    from collections import Mapping
-else:
-    from collections.abc import Mapping
+from future.utils import with_metaclass
+from collections.abc import Mapping
 from builtins import object
 import inspect
 import types
@@ -618,10 +613,7 @@ if TYPE_CHECKING:
             pass
 
 else:
-    if PY2:
-        _proxyStrBase = unicode
-    else:
-        _proxyStrBase = str
+    _proxyStrBase = str
     ProxyUnicode = proxyClass(
         _proxyStrBase, 'ProxyUnicode',
         module=__name__, dataFuncName='name',

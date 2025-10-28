@@ -9,13 +9,9 @@ from builtins import map
 from builtins import range
 from past.builtins import basestring
 from builtins import object
-from future.utils import PY2
 
-# 2to3: remove switch when python-3 only
-try:
-    from collections.abc import Mapping, MutableMapping
-except ImportError:
-    from collections import Mapping, MutableMapping
+from collections.abc import Mapping, MutableMapping
+
 import sys
 import os
 import inspect

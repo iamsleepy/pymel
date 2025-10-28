@@ -18,7 +18,6 @@ import re
 import sys
 import types
 from collections import defaultdict, OrderedDict
-from future.utils import PY2
 
 from jinja2 import Environment, PackageLoader
 
@@ -122,20 +121,12 @@ def methodNames(cls, apicls=None):
             if base is apicls:
                 continue
             for attr, obj in base.__dict__.items():
-                if PY2:
-                    if inspect.ismethod(obj):
-                        herited.add(attr)
-                else:
-                    if inspect.function(obj):
-                        herited.add(attr)
+                if inspect.function(obj):
+                    herited.add(attr)
         return herited
     else:
-        if PY2:
-            return set([name for name, obj in inspect.getmembers(cls)
-                        if inspect.ismethod(obj)])
-        else:
-            return set([name for name, obj in inspect.getmembers(cls)
-                        if inspect.isfunction(obj)])
+        return set([name for name, obj in inspect.getmembers(cls)
+                    if inspect.isfunction(obj)])
 
 
 def importableName(func, module=None, moduleMap=None):
@@ -148,8 +139,6 @@ def importableName(func, module=None, moduleMap=None):
         raise ValueError("received lambda function")
 
     builtin_mod_name = 'builtins'
-    if PY2:
-        builtin_mod_name = '__builtin__'
     if func.__module__ == builtin_mod_name:
         path = name
     else:
@@ -297,8 +286,6 @@ def functionTemplateFactory(funcName, module, returnFunc=None,
             simpleWraps=isWrapped,
             callbackFlags=callbackFlags,
             uiWidget=uiWidget)
-        if PY2:
-            rendered = rendered.encode()
         return result + rendered
     else:
         if existing:

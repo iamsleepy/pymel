@@ -9,16 +9,12 @@ from __future__ import division
 from future import standard_library
 import numbers
 
-# 2to3: remove switch when python-3 only
-try:
-    from collections.abc import Mapping, Sequence
-except ImportError:
-    from collections import Mapping, Sequence
+from collections.abc import Mapping, Sequence
+
 standard_library.install_aliases()
 from builtins import range
 from past.builtins import basestring
 from builtins import object
-from future.utils import PY2
 from collections import deque as _deque
 import sys
 import operator
@@ -608,8 +604,6 @@ def compareCascadingDicts(dict1, dict2, encoding=None, useAddedKeys=False,
         differences.update(RemovedKey(key) for key in only1)
     else:
         recurseTypes = (dict, list, tuple, set)
-        if PY2:
-            strUnicode = set([str, unicode])
         if useAddedKeys:
             differences = dict((key, AddedKey(dict2[key])) for key in only2)
         else:
@@ -636,30 +630,7 @@ def compareCascadingDicts(dict1, dict2, encoding=None, useAddedKeys=False,
                         differences[key] = subDiffs
             else:
                 # ok, we're not doing a recursive comparison...
-                if PY2 and set([type(val1), type(val2)]) == strUnicode:
-                    # we have a string and a unicode - decide what to do based on
-                    # encoding setting
-                    if encoding is False:
-                        equal = False
-                    elif encoding is None:
-                        equal = (val1 == val2)
-                    else:
-                        if type(val1) == str:
-                            strVal = val2
-                            unicodeVal = val1
-                        else:
-                            strVal = val1
-                            unicodeVal = val2
-                        try:
-                            encoded = unicodeVal.encode(encoding)
-                        except UnicodeEncodeError:
-                            # if there's an encoding error, consider them
-                            # different
-                            equal = False
-                        else:
-                            equal = (encoded == strVal)
-                else:
-                    equal = (val1 == val2)
+                equal = (val1 == val2)
 
                 if not equal:
                     if useChangedKeys:
@@ -919,8 +890,6 @@ def getImportableObject(importableName):
     else:
         # if no module, it's in builtins
         modulename = 'builtins'
-        if PY2:
-            modulename = '__builtin__'
         objName = importableName
     moduleobj = importlib.import_module(modulename)
     return getattr(moduleobj, objName)
@@ -930,8 +899,6 @@ def getImportableName(obj):
     import inspect
     module = inspect.getmodule(obj)
     import builtins
-    if PY2:
-        import __builtin__ as builtins
     if module == builtins:
         return obj.__name__
     return '{}.{}'.format(module.__name__, obj.__name__)

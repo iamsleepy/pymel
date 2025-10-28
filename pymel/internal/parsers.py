@@ -20,7 +20,7 @@ import pymel.util as util
 import pymel.versions as versions
 from . import plogging
 from pymel.mayautils import getMayaLocation
-from future.utils import PY2, with_metaclass
+from future.utils import with_metaclass
 
 try:
     from bs4 import BeautifulSoup, NavigableString
@@ -215,11 +215,6 @@ class MLStripper(HTMLParser):
     def __init__(self):
         self.reset()
         self.fed = []
-        if PY2:
-            # python-2 won't error if we skip the init, while python-3 will
-            # However, in python-2, we can't call super, because HTMLParser
-            # is an "old-style" class
-            return
         super(MLStripper, self).__init__()
 
     def handle_data(self, d):
@@ -238,19 +233,6 @@ def strip_tags(html):
     s = MLStripper()
     s.feed(html)
     return s.get_data()
-
-# This is mostly because python-2 doctest doesn't deal with unicode
-def standardizeUnicodeChars(input):
-    if PY2:
-        if isinstance(input, str):
-            return input
-    return input.translate({
-        0xb6: ord('\n'),  # the paragraph mark
-        0x2018: ord("'"),  # single left quote
-        0x2019: ord("'"),  # single right quote
-        0x201C: ord('"'),  # double left quote
-        0x201D: ord('"'),  # double right quote
-    })
 
 
 def standardizeDoc(input):
@@ -291,11 +273,6 @@ class CommandDocParser(HTMLParser):
                                      'numArgs': None, 'docstring': '', 'modes': []}
 
     def addFlagData(self, data):
-        if PY2:
-            # encode our non-unicode 'data' string to unicode
-            data = data.decode('utf-8')
-            # now saftely encode it to non-unicode ascii, ignoring unknown characters
-            data = data.encode('ascii', 'ignore')
         # Shortname
         if self.iData == 0:
             self.flags[self.currFlag]['shortname'] = data.lstrip('-\r\n')
@@ -426,29 +403,6 @@ class CommandDocParser(HTMLParser):
         elif self.active == 'examples' and tag == 'pre':
             self.active = False
 
-    if PY2:
-        # Python-3 has a new convert_charrefs arg, which handles this much more
-        # elegantly...
-        def handle_entityref(self, name):
-            appendFunc = None
-
-            if self.active == 'examples':
-                def appendFunc(decodedEntity):
-                    self.example += decodedEntity
-            elif self.active == 'flag':
-                if self.currFlag and self.currFlag in self.flags and self.iData > 1:
-                    # we're decoding a flag docstring
-                    def appendFunc(decodedEntity):
-                        self.flags[self.currFlag]['docstring'] += decodedEntity
-
-            if appendFunc is not None:
-                result = self.unescape("&" + name + ";")
-                if isinstance(result, unicode):
-                    try:
-                        result = result.encode("ascii")
-                    except UnicodeEncodeError:
-                        pass
-                appendFunc(result)
 
     def handle_data(self, data):
         if not self.active:

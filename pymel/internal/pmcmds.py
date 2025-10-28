@@ -147,8 +147,7 @@ def _createFunction(func, oldname, newname):
             old_code.co_freevars,
             old_code.co_cellvars,
         )
-    # 2to3: remove switch when python-3 only
-    elif sys.version_info[0] >= 3:
+    else:
         # Python 3 supports co_kwonlyargcount
         new_code = types.CodeType(
             old_code.co_argcount,
@@ -167,24 +166,6 @@ def _createFunction(func, oldname, newname):
             old_code.co_freevars,
             old_code.co_cellvars,
         )
-    else:
-        new_code = types.CodeType(
-            old_code.co_argcount,
-            old_code.co_nlocals,
-            old_code.co_stacksize,
-            old_code.co_flags,
-            old_code.co_code,
-            old_code.co_consts,
-            old_code.co_names,
-            old_code.co_varnames,
-            old_code.co_filename,
-            str(codeNewname),  # unicode no good in py2
-            old_code.co_firstlineno,
-            old_code.co_lnotab,
-            old_code.co_freevars,
-            old_code.co_cellvars,
-        )
-        newname = str(newname)  # unicode no good in py2
 
     return types.FunctionType(new_code,
                               func.__globals__,

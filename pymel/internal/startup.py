@@ -16,8 +16,6 @@ import pymel.versions as versions
 from pymel.mayautils import getUserPrefsDir
 from . import plogging
 
-from future.utils import PY2
-
 _logger = plogging.getLogger(__name__)
 
 # There are FOUR different ways maya might be started, all of which are
@@ -265,19 +263,11 @@ def initMEL():
                 if os.path.isabs(f) and not os.path.exists(f):
                     _logger.warning("Maya startup file %s does not exist" % f)
                 else:
-                    if PY2:
-                        # need to encode backslashes (used for windows paths)
-                        if isinstance(f, unicode):
-                            encoding = 'unicode_escape'
-                        else:
-                            encoding = 'string_escape'
-                        f = f.encode(encoding)
-                    else:
-                        # encoding to unicode_escape should add escape
-                        # sequences, but also make sure everything is in basic
-                        # ascii - so if we decode utf-8 (or ascii), it should
-                        # give us a string which is escaped
-                        f = f.encode('unicode_escape').decode('utf-8')
+                    # encoding to unicode_escape should add escape
+                    # sequences, but also make sure everything is in basic
+                    # ascii - so if we decode utf-8 (or ascii), it should
+                    # give us a string which is escaped
+                    f = f.encode('unicode_escape').decode('utf-8')
                     maya.mel.eval('source "%s"' % f)
 
     except Exception as e:
@@ -519,10 +509,7 @@ def getConfigFile():
 
 
 def parsePymelConfig():
-    if PY2:
-        import ConfigParser as configparser
-    else:
-        import configparser
+    import configparser
 
     types = {
         'skip_mel_init': 'boolean',

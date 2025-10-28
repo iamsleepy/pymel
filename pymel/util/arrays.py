@@ -20,7 +20,7 @@ from __future__ import division
 from builtins import zip
 from builtins import range
 from builtins import object
-from future.utils import PY2, with_metaclass
+from future.utils import with_metaclass
 
 import operator
 import itertools
@@ -1680,16 +1680,10 @@ class Array(with_metaclass(metaReadOnlyAttr, object)):
 
         cls_size = getattr(cls, 'size', None)
         # for new default size to 0 if not specified or class constant
-        if PY2:
-            if size is None and not shape and (not cls_size or
-                                               inspect.ismethod(cls_size) or
-                                               inspect.isdatadescriptor(cls_size)):
-                size = 0
-        else:
-            if size is None and not shape and (not cls_size or
-                                               inspect.isfunction(cls_size) or
-                                               inspect.isdatadescriptor(cls_size)):
-                size = 0
+        if size is None and not shape and (not cls_size or
+                                           inspect.isfunction(cls_size) or
+                                           inspect.isdatadescriptor(cls_size)):
+            size = 0
 
         shape, ndim, size = cls._expandshape(shape, ndim, size)
 
@@ -2993,9 +2987,6 @@ class Array(with_metaclass(metaReadOnlyAttr, object)):
     def __str__(self):
         return "[%s]" % ", ".join(str(x) for x in self)
 
-    if PY2:
-        def __unicode__(self):
-            return u"[%s]" % u", ".join(unicode(x) for x in self)
 
     def __repr__(self):
         return "%s(%s)" % (self.__class__.__name__, str(self))

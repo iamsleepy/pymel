@@ -30,14 +30,11 @@ import pymel.core.datatypes as datatypes
 from maya.cmds import about as _about
 from pymel.internal import getLogger as _getLogger
 from pymel.util.enum import Enum
-from future.utils import PY2, with_metaclass
+from future.utils import with_metaclass
 
 from pymel.util.py2to3 import RePattern
 
-if PY2:
-    import collections as abc
-else:
-    from collections import abc
+from collections import abc
 
 TYPE_CHECKING = False
 
@@ -749,12 +746,7 @@ def addAttr(*args, **kwargs):
             ['autoLong2', 'autoLong2_first', 'autoLong2_second']
     """
     # temp hack, because str is currently builtins.str...
-    if PY2:
-        from __builtin__ import str
-    else:
-        # the same as what's at global scope, but the above import makes str
-        # a local variable - and unbound in PY3 without this!
-        from builtins import str
+    from builtins import str
 
     attributeTypes = ['bool', 'long', 'short', 'byte', 'char', 'enum',
                       'float', 'double', 'doubleAngle', 'doubleLinear',
@@ -3532,34 +3524,15 @@ class Attribute(with_metaclass(_factories.MetaMayaTypeRegistry, PyNode)):
             raise TypeError("%s is not a multi-attribute and cannot be "
                             "iterated over" % self)
 
-    if PY2:
-        def __str__(self):
-            # type: () -> str
-            """
-            Returns
-            -------
-            str
-            """
-            import __builtin__
-            return __builtin__.str(self.name())
 
-        def __unicode__(self):
-            # type: () -> str
-            """
-            Returns
-            -------
-            str
-            """
-            return self.name()
-    else:
-        def __str__(self):
-            # type: () -> str
-            """
-            Returns
-            -------
-            str
-            """
-            return self.name()
+    def __str__(self):
+        # type: () -> str
+        """
+        Returns
+        -------
+        str
+        """
+        return self.name()
 
     def __eq__(self, other):
         # type: (Any) -> bool
@@ -5493,16 +5466,8 @@ class Component(with_metaclass(_factories.MetaMayaTypeRegistry, PyNode)):
         """
         return bool(len(self))
 
-    if PY2:
-        def __str__(self):
-            import __builtin__
-            return __builtin__.str(self.name())
-
-        def __unicode__(self):
-            return self.name()
-    else:
-        def __str__(self):
-            return self.name()
+    def __str__(self):
+        return self.name()
 
     def _completeNameString(self):
         return u'%s.%s' % (self.node(), self.plugAttr())
@@ -6619,10 +6584,7 @@ class Component1D64(DiscreteComponent):
         # The ContinuousComponent version works fine for us - just
         # make sure we grab the original function object, not the method
         # object, since we don't inherit from ContinuousComponent
-        if PY2:
-            _sliceToIndices = ContinuousComponent._sliceToIndices.__func__
-        else:
-            _sliceToIndices = ContinuousComponent._sliceToIndices
+        _sliceToIndices = ContinuousComponent._sliceToIndices
 
         # We're basically having to fall back on strings here, so revert 'back'
         # to the string implementation of various methods...

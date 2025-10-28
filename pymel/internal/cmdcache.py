@@ -2,7 +2,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 # Built-in imports
-from future.utils import PY2
 from builtins import range
 from past.builtins import basestring
 import os
@@ -1015,15 +1014,6 @@ def testNodeCmd(funcName, cmdInfo, nodeCmd=False, verbose=False):
                     resultType = _objectToType(val)
 
                     # deal with unicode vs str
-                    if PY2:
-                        strUni = (str, unicode)
-                        lStrUni = ([str], [unicode])
-                        if (argtype in strUni and resultType in strUni)\
-                                or (argtype in lStrUni and resultType in lStrUni):
-                            # just ignore str/unicode diff, set resultType to match
-                            resultType = argtype
-                        elif argtype in strUni and resultType in lStrUni:
-                            resultType[0] = argtype
 
                     # ensure symmetry between edit and query commands:
                     # if this flag is queryable and editable, then its queried

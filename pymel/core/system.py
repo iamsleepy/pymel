@@ -62,17 +62,9 @@ import pymel.util as _util
 import pymel.internal.factories as _factories
 import pymel.internal as _internal
 import pymel.versions as versions
-from future.utils import PY2, with_metaclass
+from future.utils import with_metaclass
 
-if PY2:
-    # formerly made a dummy namespace, collections.abc, and added
-    # collections.abc.MutableMapping; unfortunately, other python packages (ie,
-    # jinja) tried to do "from collections import abc", and ended up using
-    # our (useless) dummy module. So just doing an if/else, which shouldn't
-    # have other side effects...
-    from collections import MutableMapping
-else:
-    from collections.abc import MutableMapping
+from collections.abc import MutableMapping
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
@@ -916,15 +908,7 @@ class FileInfo(with_metaclass(SingletonABCMeta, MutableMapping)):
             raise RuntimeError("error getting fileInfo for key %r - "
                                "more than one value returned" % item)
         else:
-            value = result[0]
-            if PY2:
-                if isinstance(value, bytes):
-                    return value.decode('string_escape')
-                else:
-                    # unicode
-                    return value.decode('unicode_escape')
-            else:
-                return value
+            return result[0]
 
     def __setitem__(self, item, value):
         cmds.fileInfo(item, value)

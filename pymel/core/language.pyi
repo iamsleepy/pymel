@@ -4,7 +4,6 @@ import abc
 import pymel.util as util
 from _typeshed import Incomplete
 from collections import MutableMapping
-from future.utils import PY2 as PY2
 from pymel.core import system as system
 from typing import Any, Callable, List, Optional, Tuple, Union, overload
 

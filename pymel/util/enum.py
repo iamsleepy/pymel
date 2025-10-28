@@ -53,11 +53,7 @@ from __future__ import division
 from past.builtins import cmp
 from future import standard_library
 
-# 2to3: remove switch when python-3 only
-try:
-    from collections.abc import Mapping
-except ImportError:
-    from collections import Mapping
+from collections.abc import Mapping
 standard_library.install_aliases()
 from past.builtins import basestring
 from builtins import object

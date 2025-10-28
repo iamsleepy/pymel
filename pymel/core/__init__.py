@@ -39,10 +39,6 @@ nt = nodetypes
 dt = datatypes
 ui = uitypes
 
-from future.utils import PY2
-if PY2:
-    from __builtin__ import str
-
 # This is for backwards incompatibility due to a bug in the way LazyLoadModule
 # was used, which made all the uitypes available in this namespace
 # We may consider deprecating or removing these at some point, so don't rely on

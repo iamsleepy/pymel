@@ -14,7 +14,6 @@ from pprint import pprint
 from pymel.util.enum import Enum
 from pymel.util.arguments import AddedKey, ChangedKey, RemovedKey
 
-from future.utils import PY2
 from past.builtins import basestring, unicode
 
 THIS_FILE = inspect.getsourcefile(lambda: None)
@@ -254,9 +253,6 @@ UNICODE_PUNCTUATION = (unicode(ASCII_PUNCTUATION) \
                       + u'\u2018\u2019')
 PUNCTUATION_TABLE = {ord(x): None for x in UNICODE_PUNCTUATION}
 def strip_punctuation(input):
-    if PY2:
-        if isinstance(input, str):
-            return input.translate(None, ASCII_PUNCTUATION)
     return input.translate(PUNCTUATION_TABLE)
 
 
