@@ -30,7 +30,7 @@ import pymel.core.datatypes as datatypes
 from maya.cmds import about as _about
 from pymel.internal import getLogger as _getLogger
 from pymel.util.enum import Enum
-from future.utils import with_metaclass
+
 
 from pymel.util.py2to3 import RePattern
 
@@ -3242,7 +3242,7 @@ def _getParent(getter, obj, generations):
             return allParents[generations]
 
 
-class Attribute(with_metaclass(_factories.MetaMayaTypeRegistry, PyNode)):
+class Attribute(PyNode, metaclass=_factories.MetaMayaTypeRegistry):
 
     """Attribute class
 
@@ -5295,7 +5295,7 @@ class HashableSlice(ProxySlice):
         return self._slice.step
 
 
-class Component(with_metaclass(_factories.MetaMayaTypeRegistry, PyNode)):
+class Component(PyNode, metaclass=_factories.MetaMayaTypeRegistry):
 
     """
     Abstract base class for pymel components.
@@ -8122,7 +8122,7 @@ class ParticleComponent(Component1D):
 #        return rotate( self, *args, **kwargs )
 
 
-class AttributeSpec(with_metaclass(_factories.MetaMayaTypeRegistry, PyNode)):
+class AttributeSpec(PyNode, metaclass=_factories.MetaMayaTypeRegistry):
     '''Represents a specification for the type of an attribute.
 
     This is different from an Attribute, which is a particular instance of
@@ -8609,7 +8609,7 @@ AttributeDefaults = AttributeSpec
 #  Scene Class
 # ----------------------------------------------
 
-class Scene(with_metaclass(_util.Singleton, object)):
+class Scene(object, metaclass=_util.Singleton):
 
     """
     The Scene class provides an attribute-based method for retrieving `PyNode` instances of

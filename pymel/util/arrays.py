@@ -20,7 +20,6 @@ from __future__ import division
 from builtins import zip
 from builtins import range
 from builtins import object
-from future.utils import with_metaclass
 
 import operator
 import itertools
@@ -1002,7 +1001,7 @@ class ArrayIter(object):
 
 # A generic multi dimensional Array class
 # NOTE : Numpy Array class could be used instead, just implemented the bare minimum inspired from it
-class Array(with_metaclass(metaReadOnlyAttr, object)):
+class Array(object, metaclass=metaReadOnlyAttr):
 
     """ A generic n-dimensional array class using nested lists for storage.
 

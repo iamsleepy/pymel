@@ -23,7 +23,6 @@ from pymel.util.arrays import _toCompOrArrayInstance
 import pymel.internal.factories as _factories
 from pymel.util.enum import Enum
 from functools import reduce
-from future.utils import with_metaclass
 
 if False:
     from typing import *
@@ -290,7 +289,7 @@ class MetaMayaArrayTypeWrapper(_factories.MetaMayaTypeRegistry):
 # to the class methods
 
 
-class Vector(with_metaclass(MetaMayaArrayTypeWrapper, VectorN)):
+class Vector(VectorN, metaclass=MetaMayaArrayTypeWrapper):
 
     """
     A 3 dimensional vector class that wraps Maya's api Vector class
@@ -1550,7 +1549,7 @@ class Color(Vector):
 
 # to specify space of transforms
 
-class Space(with_metaclass(_factories.MetaMayaTypeRegistry, _api.MSpace)):
+class Space(_api.MSpace, metaclass=_factories.MetaMayaTypeRegistry):
     __slots__ = ()
     apicls = _api.MSpace
 # ------ Do not edit below this line --------
@@ -1657,7 +1656,7 @@ def equivalentSpace(space1, space2, rotationOnly=False):
 # mm(3,2)
 # 3.0
 
-class Matrix(with_metaclass(MetaMayaArrayTypeWrapper, MatrixN)):
+class Matrix(MatrixN, metaclass=MetaMayaArrayTypeWrapper):
 
     """
     A 4x4 transformation matrix based on api Matrix
@@ -2714,7 +2713,7 @@ class TransformationMatrix(Matrix):
 # ------ Do not edit above this line --------
 
 
-class EulerRotation(with_metaclass(MetaMayaArrayTypeWrapper, Array)):
+class EulerRotation(Array, metaclass=MetaMayaArrayTypeWrapper):
 
     """
     unit handling:
@@ -3478,7 +3477,7 @@ class Angle(Unit):
 # ------ Do not edit above this line --------
 
 
-class BoundingBox(with_metaclass(_factories.MetaMayaTypeRegistry, _api.MBoundingBox)):
+class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry):
     apicls = _api.MBoundingBox
     __slots__ = ()
 

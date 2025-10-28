@@ -20,7 +20,6 @@ import pymel.util as util
 import pymel.versions as versions
 from . import plogging
 from pymel.mayautils import getMayaLocation
-from future.utils import with_metaclass
 
 try:
     from bs4 import BeautifulSoup, NavigableString
@@ -634,7 +633,7 @@ class ParamInfo(object):
         return ''.join(parts)
 
 
-class ApiDocParser(with_metaclass(ABCMeta, object)):
+class ApiDocParser(object, metaclass=ABCMeta):
     NO_PYTHON_MSG = ['NO SCRIPT SUPPORT.', 'This method is not available in Python.']
     DEPRECATED_MSG = ['This method is obsolete.', 'Deprecated', 'Obsolete -']
 

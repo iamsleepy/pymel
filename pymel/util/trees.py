@@ -60,7 +60,6 @@ import warnings
 import weakref as weak
 from copy import *
 from functools import reduce
-from future.utils import with_metaclass
 
 #import logging
 #_logger = logging.getLogger(__name__)
@@ -1508,22 +1507,22 @@ class MetaTree(type):
 # derive from one of these as needed
 
 
-class FrozenTree(with_metaclass(MetaTree, object)):
+class FrozenTree(object, metaclass=MetaTree):
     mutable = False
     indexed = False
 
 
-class Tree(with_metaclass(MetaTree, object)):
+class Tree(object, metaclass=MetaTree):
     mutable = True
     indexed = False
 
 
-class IndexedFrozenTree(with_metaclass(MetaTree, object)):
+class IndexedFrozenTree(object, metaclass=MetaTree):
     mutable = False
     indexed = True
 
 
-class IndexedTree(with_metaclass(MetaTree, object)):
+class IndexedTree(object, metaclass=MetaTree):
     mutable = True
     indexed = True
 

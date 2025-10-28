@@ -10,7 +10,7 @@ from builtins import zip
 from builtins import range
 from past.builtins import basestring
 from builtins import object
-from future.utils import with_metaclass
+
 import re
 import types
 import os
@@ -2246,7 +2246,7 @@ class ApiArgUtil(object):
         return self.methodInfo.get('deprecated', False)
 
 
-class ApiUndo(with_metaclass(util.Singleton, object)):
+class ApiUndo(object, metaclass=util.Singleton):
 
     """
     this is based on a clever prototype that Dean Edmonds posted on python_inside_maya

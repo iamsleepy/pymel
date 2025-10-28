@@ -62,7 +62,6 @@ import pymel.util as _util
 import pymel.internal.factories as _factories
 import pymel.internal as _internal
 import pymel.versions as versions
-from future.utils import with_metaclass
 
 from collections.abc import MutableMapping
 
@@ -754,7 +753,7 @@ class WorkspaceEntryDict(object):
     has_key = __contains__
 
 
-class Workspace(with_metaclass(_util.Singleton, object)):
+class Workspace(object, metaclass=_util.Singleton):
 
     """
     This class is designed to lend more readability to the often confusing workspace command.
@@ -876,7 +875,7 @@ class SingletonABCMeta(_util.Singleton, abc.ABCMeta):
     pass
 
 
-class FileInfo(with_metaclass(SingletonABCMeta, MutableMapping)):
+class FileInfo(MutableMapping, metaclass=SingletonABCMeta):
 
     """
     store and get custom data specific to this file:

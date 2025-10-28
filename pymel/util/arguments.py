@@ -526,10 +526,9 @@ class ChangedKey(object):
         return '%s(%r, %r)' % (type(self).__name__, self.oldVal, self.newVal)
 
 
-# 2to3: when we transition to 3-only, get rid of encoding kwarg
-def compareCascadingDicts(dict1, dict2, encoding=None, useAddedKeys=False,
+def compareCascadingDicts(dict1, dict2, useAddedKeys=False,
                           useChangedKeys=False):
-    # type: (Union[dict, list, tuple], Union[dict, list, tuple], Union[str, bool, None], bool, bool) -> Tuple[set, set, set, dict]
+    # type: (Union[dict, list, tuple], Union[dict, list, tuple], bool, bool) -> Tuple[set, set, set, dict]
     '''compares two cascading dicts
 
     Parameters
@@ -538,13 +537,6 @@ def compareCascadingDicts(dict1, dict2, encoding=None, useAddedKeys=False,
         the first object to compare
     dict2 : Union[dict, list, tuple]
         the second object to compare
-    encoding : Union[str, bool, None]
-        controls how comparisons are made when one value is a str, and one is a
-        unicode; if None, then comparisons are simply made with == (so ascii
-        characters will compare equally); if the value False, then unicode and
-        str are ALWAYS considered different - ie, u'foo' and 'foo' would not be
-        considered equal; otherwise, it should be the name of a unicode
-        encoding, which will be applied to the unicode string before comparing
     useAddedKeys : bool
         if True, then similarly to how 'RemovedKey' objects are used in the
         returned diferences object (see the Returns section), 'AddedKey' objects

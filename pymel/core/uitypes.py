@@ -23,7 +23,6 @@ from pymel.core import other
 from pymel.core import rendering
 from pymel.core import system
 from pymel.core import windows
-from future.utils import with_metaclass
 
 if False:
     from typing import *
@@ -3952,7 +3951,7 @@ class AELoader(type):
         return cls._loaded
 
 
-class AETemplate(with_metaclass(AELoader, object)):
+class AETemplate(object, metaclass=AELoader):
 
     """
     To create an Attribute Editor template using python, do the following:

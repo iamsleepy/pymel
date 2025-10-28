@@ -42,7 +42,6 @@ from pymel.core import windows
 from pymel.core.animation import listAnimatable as _listAnimatable
 from pymel.core.system import namespaceInfo as _namespaceInfo, FileReference as _FileReference
 from pymel.util.enum import Enum
-from future.utils import with_metaclass
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
@@ -177,7 +176,7 @@ def _addTypeNames():
     return NodetypesLazyLoadModule(__name__, globals())
 
 
-class DependNode(with_metaclass(_factories.MetaMayaTypeRegistry, general.PyNode)):
+class DependNode(general.PyNode, metaclass=_factories.MetaMayaTypeRegistry):
     __apicls__ = _api.MFnDependencyNode
 
     # ------------------------------
@@ -9312,7 +9311,7 @@ class Particle(DeformableShape):
 # ------ Do not edit above this line --------
 
 
-class SelectionSet(with_metaclass(_factories.MetaMayaTypeRegistry, _api.MSelectionList)):
+class SelectionSet(_api.MSelectionList, metaclass=_factories.MetaMayaTypeRegistry):
     apicls = _api.MSelectionList
 
     def __init__(self, objs):

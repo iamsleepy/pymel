@@ -22,8 +22,6 @@ import tempfile
 import string
 from . import mellex
 
-from future.utils import with_metaclass
-
 TYPE_CHECKING = False
 
 if TYPE_CHECKING:
@@ -1128,7 +1126,7 @@ class ArrayToken(Token):
 #  BatchData -------------------------------------------------------------------
 
 
-class BatchData(with_metaclass(util.Singleton, object)):
+class BatchData(object, metaclass=util.Singleton):
     def __init__(self, **kwargs):
         self.currentModules = TwoWayDict()
         self.proc_to_module = {}
