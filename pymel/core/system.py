@@ -38,10 +38,6 @@ so you can use object-oriented path methods with the results::
     Path('...test.ma')
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 from past.builtins import cmp
 from builtins import zip
 from builtins import range

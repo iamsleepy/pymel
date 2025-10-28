@@ -1,10 +1,6 @@
 #!/usr/bin/env mayapy
 '''Print out a contents of the core pymel modules in a text format that can be diffed
 '''
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from builtins import range
 from past.builtins import basestring
 import sys

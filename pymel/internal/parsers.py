@@ -1,6 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
 from builtins import zip
 from builtins import chr, range
 from past.builtins import basestring
@@ -355,7 +352,7 @@ class CommandDocParser(HTMLParser):
             #_logger.debug(self.currFlag, msg)
 
     def handle_starttag(self, tag, attrs):
-        from future.moves.urllib.parse import urlparse
+        from urllib.parse import urlparse
 
         #_logger.debug("begin: %s tag: %s" % (tag, attrs))
         attrmap = dict(attrs)

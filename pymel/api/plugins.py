@@ -83,10 +83,6 @@ An example of a plugin which creates a node::
     def uninitializePlugin(mobject):
         PymelSineNode.deregister(mobject)
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from pymel.util.py2to3 import RePattern
 
 from builtins import object

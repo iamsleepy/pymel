@@ -13,10 +13,6 @@
     execute -> compare;
 
 """
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
-
 from past.builtins import cmp
 from builtins import map
 from builtins import str

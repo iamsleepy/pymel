@@ -2,16 +2,12 @@
 Defines arguments manipulation utilities, like checking if an argument is iterable, flattening a nested arguments list, etc.
 These utility functions can be used by other util modules and are imported in util's main namespace for use by other pymel modules
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
-from future import standard_library
+#from future import standard_library
 import numbers
 
 from collections.abc import Mapping, Sequence
 
-standard_library.install_aliases()
+#standard_library.install_aliases()
 from builtins import range
 from past.builtins import basestring
 from builtins import object

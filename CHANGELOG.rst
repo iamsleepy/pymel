@@ -11,10 +11,20 @@ Version 1.6.0
 ----------------------------------
 Fixes
 ----------------------------------
+Some of the open issues with easy fixes.
 
+- Issue 479: readme lists Mac install path in for "on Windows"
+- Issue 473: __import__ called with illegal value of level
+- Issue 463: Multiple removeCallback calls in pymel
 
 Additions
 ----------------------------------
+- Added support for Maya 2026
+
+----------------------------------
+Non-Backward Compatible Changes
+----------------------------------
+- Dropped support for maya 2022
 - Removed support for Python 2
 
 ==================================
@@ -39,19 +49,6 @@ Non-Backward Compatible Changes
 - Dropped support for maya-2020
 - Dropped support for PySide and shiboken
 
-==================================
-Version 1.5.0
-==================================
-
-----------------------------------
-Additions
-----------------------------------
-- Added support for maya 2025 and python 3.11
-
-----------------------------------
-Non-Backward Compatible Changes
-----------------------------------
-- Dropped support for maya-2020
 
 ==================================
 Version 1.4.0

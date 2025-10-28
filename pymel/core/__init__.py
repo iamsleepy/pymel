@@ -1,8 +1,4 @@
 "The primary module for maya commands and node classes"
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 import sys
 import pymel as _pymel
 _pymel.core = sys.modules[__name__]
@@ -220,6 +216,7 @@ def _pluginLoaded(*args):
     if (pluginName in _pluginData) and 'callbackId' in _pluginData[pluginName] \
             and _pluginData[pluginName]['callbackId'] != None:
         api.MEventMessage.removeCallback(_pluginData[pluginName]['callbackId'])
+        _pluginData[pluginName]['callbackId'] = None
 
     _logger.debug("Plugin loaded: %s", pluginName)
     _pluginData[pluginName] = {}

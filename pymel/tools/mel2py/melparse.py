@@ -5,10 +5,6 @@
 Created from the ansi c example included with ply, which is based on the grammar in K&R, 2nd Ed.
 
 """
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
-
 from builtins import filter
 from builtins import range
 from builtins import str

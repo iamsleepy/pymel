@@ -2,10 +2,6 @@
 Defines common types and type related utilities:  Singleton, etc.
 These types can be shared by other utils modules and imported into util main namespace for use by other pymel modules
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from collections.abc import Mapping
 from builtins import object
 import inspect

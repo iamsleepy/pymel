@@ -28,9 +28,6 @@ add the following line to the 'main' function of $HOME/.ipython/ipy_user_conf.py
 
 Author: Chad Dombrova
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
 from builtins import range
 from past.builtins import basestring
 from builtins import object

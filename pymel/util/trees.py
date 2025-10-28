@@ -42,9 +42,6 @@ We do NOT recommend using it in external code...
 <BLANKLINE>
 -: 3
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
 # Python implementation inspired from Gonzalo Rodrigues "Trees and more trees"
 # in ASPN cookbook
 

@@ -1,10 +1,6 @@
 """
 A generic n-dimensionnal Array class serving as base for arbitrary length VectorN and MatrixN classes
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 # NOTE: modified and added some methods that are closer to how Numpy works, as some people pointed out
 # they didn't want non-Python dependencies.
 # For instance implemented partially the neat multi index slicing, __getitem__ and __setitem__ as well

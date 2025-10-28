@@ -1,8 +1,4 @@
 """ Imports Maya API methods in the 'api' namespace, and defines various utilities for Python<->API communication """
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
-
 # They will be imported / redefined later in Pymel, but we temporarily need them here
 from builtins import range
 from past.builtins import basestring

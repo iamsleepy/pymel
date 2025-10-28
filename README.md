@@ -331,7 +331,7 @@ sudo /usr/autodesk/maya<Version>/bin/mayapy -m pip install pymel
 (from a command window running as Administrator)
 
 ```
-/Applications/Autodesk/maya<Version>/Maya.app/Contents/bin/mayapy -m pip install pymel
+C:\Program Files\Autodesk\Maya<VersionNumber>\bin\mayapy -m pip install pymel
 ```
 
 ### Installing into your user's site-packages directory

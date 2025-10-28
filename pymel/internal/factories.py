@@ -1,10 +1,6 @@
 """
 Contains the wrapping mechanisms that allows pymel to integrate the api and maya.cmds into a unified interface
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 # Built-in imports
 from builtins import zip
 from builtins import range

@@ -46,15 +46,11 @@ original arguments used to create the enumeration:
     >>> shirt_colour.index
     2
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 from past.builtins import cmp
-from future import standard_library
+#from future import standard_library
 
 from collections.abc import Mapping
-standard_library.install_aliases()
+#standard_library.install_aliases()
 from past.builtins import basestring
 from builtins import object
 __author_name__ = "Ben Finney"

@@ -1,8 +1,4 @@
 """Functions related to fx"""
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 import pymel.internal.factories as _factories
 import pymel.core.general as _general
 if False:

@@ -1,10 +1,6 @@
 """Utilities for getting Maya resource directories, sourcing scripts, and executing deferred.
 
 These do not require initialization of maya.standalone"""
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from past.builtins import execfile
 from builtins import next
 from builtins import str

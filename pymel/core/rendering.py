@@ -1,8 +1,4 @@
 """Functions related to rendering"""
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 import pymel.util as _util
 import pymel.internal.factories as _factories
 import pymel.core.general as _general

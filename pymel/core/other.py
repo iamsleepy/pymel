@@ -2,10 +2,6 @@
 Functions which are not listed in the maya documentation, such as commands created by plugins,
 as well as the name parsing classes `DependNodeName`, `DagNodeName`, and `AttributeName`.
 """
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from builtins import str
 import re
 import inspect

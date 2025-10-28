@@ -13,10 +13,6 @@ simply add a __melobject__ function that returns a mel-friendly result and pass 
 The wrapped commands in this module are the starting point for any other pymel customizations.
 
 '''
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-
 from past.builtins import basestring
 import inspect
 import sys
