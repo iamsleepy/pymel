@@ -13,9 +13,11 @@ Fixes
 ----------------------------------
 Some of the open issues with easy fixes.
 
-- Issue 479: readme lists Mac install path in for "on Windows"
-- Issue 473: __import__ called with illegal value of level
-- Issue 463: Multiple removeCallback calls in pymel
+- readme lists Mac install path in for "on Windows" (issue #479)
+- __import__ called with illegal value of level (issue #473)
+- Multiple removeCallback calls in pymel (issue #463)
+
+- Fixing supports for command flags without shortname(e.g., affects)
 
 Additions
 ----------------------------------
@@ -26,6 +28,11 @@ Non-Backward Compatible Changes
 ----------------------------------
 - Dropped support for maya 2022
 - Removed support for Python 2
+
+----------------------------------
+Open issues
+----------------------------------
+- Support div class version baseline in the document.
 
 ==================================
 Version 1.5.0

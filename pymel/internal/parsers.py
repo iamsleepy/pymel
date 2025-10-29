@@ -17,6 +17,10 @@ import pymel.util as util
 import pymel.versions as versions
 from . import plogging
 from pymel.mayautils import getMayaLocation
+from ..versions import shortName
+
+# iamsleepy: for research
+import traceback
 
 try:
     from bs4 import BeautifulSoup, NavigableString
@@ -230,6 +234,14 @@ def strip_tags(html):
     s.feed(html)
     return s.get_data()
 
+def standardizeUnicodeChars(input):
+    return input.translate({
+        0xb6: ord('\n'),  # the paragraph mark
+        0x2018: ord("'"),  # single left quote
+        0x2019: ord("'"),  # single right quote
+        0x201C: ord('"'),  # double left quote
+        0x201D: ord('"'),  # double right quote
+    })
 
 def standardizeDoc(input):
     return standardizeWhitespace(standardizeUnicodeChars(strip_tags(input)))
@@ -271,10 +283,12 @@ class CommandDocParser(HTMLParser):
     def addFlagData(self, data):
         # Shortname
         if self.iData == 0:
-            self.flags[self.currFlag]['shortname'] = data.lstrip('-\r\n')
+            shortname = data.lstrip('-\r\n')
+            self.flags[self.currFlag]['shortname'] = shortname
 
         # Arguments
         elif self.iData == 1:
+            #print(self.iData, data)
             typemap = {
                 'string': str,
                 'float': float,
@@ -312,6 +326,7 @@ class CommandDocParser(HTMLParser):
 
             self.flags[self.currFlag]['args'] = args
             self.flags[self.currFlag]['numArgs'] = numArgs
+            self.iData += 1
 
         # Docstring
         else:
@@ -325,7 +340,7 @@ class CommandDocParser(HTMLParser):
             data = data.strip('{}\t')
             data = data.replace('*', r'\*')  # for reStructuredText
             self.flags[self.currFlag]['docstring'] += data
-        self.iData += 1
+            self.iData += 1
 
     def endFlag(self):
         # cleanup last flag
@@ -412,11 +427,14 @@ class CommandDocParser(HTMLParser):
 
                 if data and stripped and stripped not in ['(', ')', '=', '], [']:
                     #_logger.debug("DATA", data)
-
                     if self.currFlag in self.flags:
                         self.addFlagData(data)
                     else:
                         self.startFlag(data)
+                # lich: Since there could be commands without shortname, use right bracket to put into next stage instead.
+                if data and stripped and stripped == ')':
+                    self.iData += 1
+
         elif self.active == 'command':
             data = data.replace('\r\n', ' ')
             data = data.replace('\n', ' ')
