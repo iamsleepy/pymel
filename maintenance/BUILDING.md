@@ -187,6 +187,13 @@ Building an Official PyMEL Release
     ```python
     import sys
     import os
+    import maya.utils as utils
+    
+    # Workaround for missing encoding member in maya.Output when compiling the code.
+    class MayaOutput(utils.Output):
+        encoding = sys.getdefaultencoding()
+    sys.stdout = MayaOutput()
+            
     pymelPath = r'C:\Projects\Dev\pymel'   # ...or wherever YOUR pymel version is installed
     pymelInit = os.path.join(pymelPath, 'pymel', '__init__.py')
     if not os.path.isfile(pymelInit):

@@ -241,6 +241,7 @@ class PyDocstringBuilder(DocstringBuilder):
             ['    ' + x for x in textwrap.wrap(descr, self.DOC_WIDTH)])
         # add trailing newline
         descr = descr + '\n' if descr else ''
+        shortname = shortname if shortname is not None else ''
         return '- %s %s [%s]\n%s\n' % (
             (flag + ' : ' + shortname).ljust(30),
             ('(' + typ + ')').ljust(15),

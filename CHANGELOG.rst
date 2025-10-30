@@ -16,8 +16,9 @@ Some of the open issues with easy fixes.
 - readme lists Mac install path in for "on Windows" (issue #479)
 - __import__ called with illegal value of level (issue #473)
 - Multiple removeCallback calls in pymel (issue #463)
-
 - Fixing supports for command flags without shortname(e.g., affects)
+- Make some of anonymous enums constants(e.g., MFnDagNode.kNextPos, MGeometryList.kAll, etc...)
+- Added an encoding workaround for building step 3.
 
 Additions
 ----------------------------------
@@ -33,6 +34,9 @@ Non-Backward Compatible Changes
 Open issues
 ----------------------------------
 - Support div class version baseline in the document.
+- Replace pipes in the tests module for Python 3.13
+- GUI Tests currently is redirected to output window.
+- Step3 will create an extra empty line at the beginning of generated codes.
 
 ==================================
 Version 1.5.0

@@ -1456,7 +1456,8 @@ class XmlApiDocParser(ApiDocParser):
         if not results['values']:
             return
 
-        if self._anonymousEnumRe.match(results['name']):
+        # Not working MFnDagNode.kNextPos
+        if self._anonymousEnumRe.match(results['name']) or results['name'] is None or results['name'].strip() == "":
             # for an example of an anonymous enum, see MFnDagNode.kNextPos
             for key, value in results['values'].items():
                 self.constants[key] = value

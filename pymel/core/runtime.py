@@ -9,6 +9,7 @@ else:
 
 
 
+
 # ------ Do not edit below this line --------
 
 ATOMTemplate = getattr(cmds, 'ATOMTemplate', None)
@@ -66,8 +67,6 @@ AddHolderOptions = getattr(cmds, 'AddHolderOptions', None)
 AddInBetweenTargetShape = getattr(cmds, 'AddInBetweenTargetShape', None)
 
 AddInBetweenTargetShapeOptions = getattr(cmds, 'AddInBetweenTargetShapeOptions', None)
-
-AddInbetween = getattr(cmds, 'AddInbetween', None)
 
 AddInfluence = getattr(cmds, 'AddInfluence', None)
 
@@ -1460,8 +1459,6 @@ DistributeUVsOptions = getattr(cmds, 'DistributeUVsOptions', None)
 DollyTool = getattr(cmds, 'DollyTool', None)
 
 DopeSheetEditor = getattr(cmds, 'DopeSheetEditor', None)
-
-DownloadBonusTools = getattr(cmds, 'DownloadBonusTools', None)
 
 Drag = getattr(cmds, 'Drag', None)
 
@@ -3962,8 +3959,6 @@ RemoveFromCharacterSet = getattr(cmds, 'RemoveFromCharacterSet', None)
 RemoveFromContainer = getattr(cmds, 'RemoveFromContainer', None)
 
 RemoveFromContainerOptions = getattr(cmds, 'RemoveFromContainerOptions', None)
-
-RemoveInbetween = getattr(cmds, 'RemoveInbetween', None)
 
 RemoveInfluence = getattr(cmds, 'RemoveInfluence', None)
 

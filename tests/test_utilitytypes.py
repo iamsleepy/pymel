@@ -7,7 +7,7 @@ from pymel.util.enum import Enum
 aDict = {'A':1, 'a':2}
 bDict = {'B':3, 'b':4}
 
-class BasicSingleton(object, metaclass=utilitytypes.Singleton, object):
+class BasicSingleton(object, metaclass=utilitytypes.Singleton):
     pass
 
 # 2to3: need to use "true" dict object in python-2 to avoid metaclass issue

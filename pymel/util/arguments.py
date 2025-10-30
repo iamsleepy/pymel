@@ -609,9 +609,8 @@ def compareCascadingDicts(dict1, dict2, useAddedKeys=False,
                 # compare not equal, or encoding is False (in which case they
                 # may compare python-equal, but could have some str-unicode
                 # equalities, so we need to verify for ourselves):
-                if encoding is False or val1 != val2:
+                if val1 != val2:
                     subDiffs = compareCascadingDicts(val1, val2,
-                                                     encoding=encoding,
                                                      useAddedKeys=useAddedKeys,
                                                      useChangedKeys=useChangedKeys)[-1]
                     if subDiffs:
