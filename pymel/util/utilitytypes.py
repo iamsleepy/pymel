@@ -1303,7 +1303,8 @@ def alias(origAttrName):
 
 class propertycache(object):
 
-    '''Class for creating properties where the value is initially calculated then stored.
+    """
+    Class for creating properties where the value is initially calculated then stored.
 
     Intended for use as a descriptor, ie:
 
@@ -1313,8 +1314,8 @@ class propertycache(object):
             return calcValue()
     c = MyClass()
     c.aValue
+    """
 
-    '''
 
     def __init__(self, func):
         self.func = func
