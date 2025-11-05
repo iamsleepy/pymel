@@ -1,6 +1,6 @@
 #!/usr/bin/env mayapy
 import os
-import pipes
+import shlex
 import re
 import sys
 
@@ -157,7 +157,7 @@ def pytest_test(argv, doctest=True, warnings=True):
 
     # the test excludes are handled by conftest.py, since I couldn't find
     # a way to exclude them from the "command line"
-    print(" ".join(pipes.quote(x) for x in argv))
+    print(" ".join(shlex.quote(x) for x in argv))
 
     if wrappedStdout is not None:
         sys.stdout = wrappedStdout

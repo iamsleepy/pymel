@@ -4,7 +4,7 @@ A wrap of Maya's Vector, Point, Color, Matrix, TransformationMatrix, Quaternion,
 """
 from builtins import map
 from builtins import range
-from past.builtins import basestring
+
 import os
 import sys
 import math
@@ -2179,7 +2179,7 @@ class Quaternion(Matrix):
                 args = args.rotate
                 self.unit = 'radians'
 
-            elif len(args) == 4 and isinstance(args[3], (basestring, util.EnumValue)):  # isinstance(args[3], EulerRotation.RotationOrder) ) :
+            elif len(args) == 4 and isinstance(args[3], ((bytes, str), util.EnumValue)):  # isinstance(args[3], EulerRotation.RotationOrder) ) :
                 quat = _api.MQuaternion()
                 quat.assign(EulerRotation(*args, **kwargs))
                 args = quat
@@ -2851,7 +2851,7 @@ class EulerRotation(Array, metaclass=MetaMayaArrayTypeWrapper):
         elif args:
             if len(args) == 1:
                 args = list(args[0])
-            elif len(args) == 2 and isinstance(args[1], (basestring, util.EnumValue)):
+            elif len(args) == 2 and isinstance(args[1], ((bytes, str), util.EnumValue)):
                 args = list(args[0]) + [args[1]]
             else:
                 # convert to list, as we may have to do modifications
@@ -2862,7 +2862,7 @@ class EulerRotation(Array, metaclass=MetaMayaArrayTypeWrapper):
             if self.order != 'XYZ' and len(args) == 3:
                 args.append(self.apicls.__dict__['order'].__get__(self, self.apicls))
 
-            elif len(args) == 4 and isinstance(args[3], (basestring, util.EnumValue)):
+            elif len(args) == 4 and isinstance(args[3], ((bytes, str), util.EnumValue)):
                 # allow to initialize directly from 3 rotations and a rotation order as string
                 args[3] = self.RotationOrder.getIndex(args[3])
 

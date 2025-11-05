@@ -13,7 +13,7 @@ simply add a __melobject__ function that returns a mel-friendly result and pass 
 The wrapped commands in this module are the starting point for any other pymel customizations.
 
 '''
-from past.builtins import basestring
+
 import inspect
 import sys
 import re
@@ -54,7 +54,7 @@ def getCmdName(inFunc):
     cmdName = inFunc.__name__
     if cmdName == 'stubFunc':
         sourceFile = inspect.getsourcefile(inFunc)
-        if (isinstance(sourceFile, basestring) and
+        if (isinstance(sourceFile, (bytes, str)) and
                 os.path.join('maya', 'app', 'commands') in sourceFile):
             # Here's where it gets tricky... this is a fairly big hack, highly
             # dependent on the exact implementation of maya.app.commands.stubFunc...
@@ -217,7 +217,7 @@ def addWrappedCmd(cmdname, cmd=None):
         return res
 
     oldname = getattr(cmd, '__name__', None)
-    if isinstance(oldname, basestring):
+    if isinstance(oldname, (bytes, str)):
         # Don't use cmd.__name__, as this could be 'stubFunc'
         newname = getCmdName(cmd)
     else:

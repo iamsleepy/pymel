@@ -3,7 +3,7 @@ Functions and classes related to scripting, including `MelGlobals` and `Mel`
 """
 from builtins import map
 from builtins import range
-from past.builtins import basestring
+
 from builtins import object
 
 from collections.abc import Mapping, MutableMapping
@@ -219,7 +219,7 @@ def getMelType(pyObj, exactOnly=True, allowBool=False, allowMatrix=False):
 
     if inspect.isclass(pyObj):
 
-        if issubclass(pyObj, basestring):
+        if issubclass(pyObj, (bytes, str)):
             return 'string'
         elif allowBool and issubclass(pyObj, bool):
             return 'bool'
@@ -254,7 +254,7 @@ def getMelType(pyObj, exactOnly=True, allowBool=False, allowMatrix=False):
                 return 'string[]'
             except:
                 return
-        if isinstance(pyObj, basestring):
+        if isinstance(pyObj, (bytes, str)):
             return 'string'
         elif allowBool and isinstance(pyObj, bool):
             return 'bool'
@@ -622,7 +622,7 @@ class OptionVarList(tuple):
         to the Maya optionVar at the key denoted by self.key.
         """
 
-        if isinstance(val, basestring):
+        if isinstance(val, (bytes, str)):
             return cmds.optionVar(stringValueAppend=[self.key, val])
         if isinstance(val, (int, int)):
             return cmds.optionVar(intValueAppend=[self.key, val])
@@ -684,7 +684,7 @@ class OptionVarDict(MutableMapping):
 
     def __setitem__(self, key, val):
         # type: (str, Any) -> None
-        if isinstance(val, basestring):
+        if isinstance(val, (bytes, str)):
             return cmds.optionVar(stringValue=[key, val])
         if isinstance(val, (int, bool, int)):
             return cmds.optionVar(intValue=[key, int(val)])
@@ -694,7 +694,7 @@ class OptionVarDict(MutableMapping):
             if len(val) == 0:
                 return cmds.optionVar(clearArray=key)
             listType = type(val[0])
-            if issubclass(listType, basestring):
+            if issubclass(listType, (bytes, str)):
                 flag = 'stringValue'
             elif issubclass(listType, (int, int)):
                 flag = 'intValue'

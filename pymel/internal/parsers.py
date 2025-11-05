@@ -1,6 +1,6 @@
 from builtins import zip
 from builtins import chr, range
-from past.builtins import basestring
+
 from builtins import object
 import builtins
 import functools
@@ -18,9 +18,6 @@ import pymel.versions as versions
 from . import plogging
 from pymel.mayautils import getMayaLocation
 from ..versions import shortName
-
-# iamsleepy: for research
-import traceback
 
 try:
     from bs4 import BeautifulSoup, NavigableString
@@ -132,7 +129,7 @@ def iterXmlTextAndElem(element):
     Also handles entity-refs-as-tags, like <lsquo />
     '''
     tag = element.tag
-    if not isinstance(tag, basestring) and tag is not None:
+    if not isinstance(tag, (bytes, str)) and tag is not None:
         return
     if len(element) == 0 and not element.text:
         # If this is an empty element - no text, no children - check if it's an
@@ -268,6 +265,7 @@ class CommandDocParser(HTMLParser):
         self.example = ''
         self.emptyModeFlags = []  # when flags are in a sequence ( lable1, label2, label3 ), only the last flag has queryedit modes. we must gather them up and fill them when the last one ends
         self.internal = False  # True if this is marked as in the internal category
+        self.baseline = None
         HTMLParser.__init__(self)
 
     def __repr__(self):
@@ -278,7 +276,7 @@ class CommandDocParser(HTMLParser):
         #assert data == self.currFlag
         self.iData = 0
         self.flags[self.currFlag] = {'longname': self.currFlag, 'shortname': None, 'args': None,
-                                     'numArgs': None, 'docstring': '', 'modes': []}
+                                     'numArgs': None, 'baseline': None, 'docstring': '', 'modes': []}
 
     def addFlagData(self, data):
         # Shortname
@@ -401,6 +399,10 @@ class CommandDocParser(HTMLParser):
                 self.flags[self.currFlag]['modes'].append(mode)
         elif tag == 'h2':
             self.active = False
+        elif tag == 'div':
+            div_class = attrmap.get('class', None)
+            if div_class == 'version baseline':
+                self.active = 'baseline'
 
     def handle_endtag(self, tag):
         #if tag == 'p' and self.active == 'command': self.active = False
@@ -431,7 +433,7 @@ class CommandDocParser(HTMLParser):
                         self.addFlagData(data)
                     else:
                         self.startFlag(data)
-                # lich: Since there could be commands without shortname, use right bracket to put into next stage instead.
+                # cxli: Since there could be commands without shortname, use right bracket to put into next stage instead.
                 if data and stripped and stripped == ')':
                     self.iData += 1
 
@@ -451,6 +453,18 @@ class CommandDocParser(HTMLParser):
             data = data.replace('\r\n', '\n')
             self.example += data
             #self.active = False
+        elif self.active == 'baseline':
+            # cxli: add support for version baseline, we'll need to restore to flag state after processing it.
+            # cxli: store it for now, may use it later.
+            if self.currFlag:
+                stripped = data.strip()
+                version_strs = stripped.split('.')
+                version = int(version_strs[0]) * 10000
+                if len(version_strs) > 1:
+                    version += int(version_strs[1]) * 100
+                self.flags[self.currFlag]['baseline'] = version
+                self.baseline = version
+                self.active = 'flag'
 
 
 # TODO : cache doc location or it's evaluated for each getCmdInfo !
@@ -1092,7 +1106,7 @@ class ApiDocParser(object, metaclass=ABCMeta):
                 return int(rawValue.rstrip('UuLl'))
             elif valueType in ['float', 'double']:
                 # '1.0 / 24.0'
-                if isinstance(rawValue, basestring) and rawValue.count('/') == 1:
+                if isinstance(rawValue, (bytes, str)) and rawValue.count('/') == 1:
                     numerator, divisor = rawValue.split('/')
                     return (self.parseValue(numerator, valueType)
                             / self.parseValue(divisor, valueType))

@@ -9,7 +9,7 @@ from collections.abc import Mapping, Sequence
 
 #standard_library.install_aliases()
 from builtins import range
-from past.builtins import basestring
+
 from builtins import object
 from collections import deque as _deque
 import sys
@@ -35,7 +35,7 @@ def isIterable(obj):
     -------
     bool
     """
-    if isinstance(obj, basestring):
+    if isinstance(obj, (bytes, str)):
         return False
     elif isinstance(obj, ProxyUnicode):
         return False

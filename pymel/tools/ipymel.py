@@ -29,7 +29,7 @@ add the following line to the 'main' function of $HOME/.ipython/ipy_user_conf.py
 Author: Chad Dombrova
 """
 from builtins import range
-from past.builtins import basestring
+
 from builtins import object
 from optparse import OptionParser
 try:
@@ -191,7 +191,7 @@ def api_ls(args, dagOnly, long=False):
     seem to work very well from a subthread, use maya.api.OpenMaya'''
     sel = om.MSelectionList()
 
-    if isinstance(args, basestring):
+    if isinstance(args, (bytes, str)):
         args = [args]
 
     for arg in args:

@@ -13,10 +13,9 @@
     execute -> compare;
 
 """
-from past.builtins import cmp
 from builtins import map
 from builtins import str
-from past.builtins import basestring
+
 from builtins import object
 import functools
 import re
@@ -331,7 +330,7 @@ class Parsed(ProxyUni):
             pos = data.pos
             valid = data.isValid()
             value = str(data)
-        elif isSequence(data) and not isinstance(data, basestring):
+        elif isSequence(data) and not isinstance(data, (bytes, str)):
             # building from sub parts, must be of the same type and in class _accepts
             # TODO : use yacc own rules for accepts
             if data:
@@ -374,7 +373,7 @@ class Parsed(ProxyUni):
         if valid:
             # print "No reparsing necessary for a resulting value %s (%r)" % (value, value)
             strvalue = str(value)
-        elif isinstance(value, basestring):
+        elif isinstance(value, (bytes, str)):
             if debug:
                 print("%s: Will need to reparse value %r" % (clsname, value))
             newcls.classparserbuild(debug=debug)
@@ -434,7 +433,7 @@ class Parsed(ProxyUni):
         elif self.accepts(other):
             othervalid = other.isValid()
             sublist.append(other)
-        elif isinstance(other, basestring):
+        elif isinstance(other, (bytes, str)):
             othervalid = False
         else:
             raise TypeError("cannot add %s and %s" % (type(self), type(other)))
@@ -497,8 +496,7 @@ class Parser(object):
         # Sort them by line number of declaration as it's how the yacc builder works to order rules
         # TODO : some more explicit rule order handling (when precedence isn't an option) ?
         rules.sort(key=functools.cmp_to_key(
-            lambda x, y: cmp(rulesDict[x].__code__.co_firstlineno,
-                             rulesDict[y].__code__.co_firstlineno)))
+            lambda x, y: (rulesDict[x].__code__.co_firstlineno > rulesDict[y].__code__.co_firstlineno) - (rulesDict[x].__code__.co_firstlineno < rulesDict[y].__code__.co_firstlineno)))
         # print "sorted rules:", [(r, parsercls.rulesDict[r].__code__.co_firstlineno) for r in rules]
         rules = tuple(rules)
 
@@ -550,7 +548,7 @@ class Parser(object):
         for name, obj in inspect.getmembers(parsercls):
             if name.startswith('t_') and name != 't_error':
 
-                if isinstance(obj, basestring):
+                if isinstance(obj, (bytes, str)):
                     v = obj
                 elif inspect.isfunction(obj) or inspect.ismethod(obj):
                     v = obj.__doc__
@@ -745,7 +743,7 @@ class autoparsed(type):
                     if name.startswith('p_'):
                         shortname = name[2:]
                         # shorthand syntax: needs to be converted to a function
-                        if isinstance(obj, basestring):
+                        if isinstance(obj, (bytes, str)):
                             v = obj
                             needsWrapping = True
                         # regular syntax: already a function
@@ -791,7 +789,7 @@ class autoparsed(type):
                     # TOKENS
                     elif name.startswith('t_') and name != 't_error':
                         shortname = name[2:]
-                        if isinstance(obj, basestring):
+                        if isinstance(obj, (bytes, str)):
                             v = obj
                         elif inspect.isfunction(obj) or inspect.ismethod(obj):
                             v = obj.__doc__
@@ -943,7 +941,7 @@ def _getTokenPatterns(parsercls):
         if name.startswith('t_') and name != 't_error':
             # strip off 't_'
             k = name[2:]
-            if isinstance(obj, basestring):
+            if isinstance(obj, (bytes, str)):
                 v = obj
             elif inspect.isfunction(obj) or inspect.ismethod(obj):
                 v = obj.__doc__

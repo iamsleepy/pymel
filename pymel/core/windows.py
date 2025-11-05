@@ -3,7 +3,7 @@ Functions for creating UI elements, as well as their class counterparts.
 """
 from builtins import range
 from builtins import str
-from past.builtins import basestring
+
 import re
 import sys
 import functools
@@ -310,7 +310,7 @@ class PopupError(Exception):
             icon to use for the confirm dialog (see confirmDialog docs for available
             icons)
         """
-        if not isinstance(msgOrException, (basestring, Exception)):
+        if not isinstance(msgOrException, ((bytes, str), Exception)):
             raise TypeError(msgOrException)
 
         if not cmds.about(batch=1):
@@ -496,7 +496,7 @@ def subMenuItem(*args, **kwargs):
 #
 #        if cls._isBeingCreated(name, create, kwargs):
 #            assert dataType
-#            if not isinstance(dataType, basestring):
+#            if not isinstance(dataType, (bytes, str)):
 #                try:
 #                    dataType = dataType.__name__
 #                except AttributeError:
@@ -670,7 +670,7 @@ def valueControlGrp(name=None, create=False, dataType=None, slider=True, value=N
 
     if uitypes.PyUI._isBeingCreated(name, create, kwargs):
         assert dataType, "You must pass a dataType when creating a new control"
-        if not isinstance(dataType, basestring):
+        if not isinstance(dataType, (bytes, str)):
             try:
                 dataType = dataType.__name__
             except AttributeError:

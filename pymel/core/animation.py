@@ -1,5 +1,5 @@
 """functions related to animation"""
-from past.builtins import basestring
+
 import pymel.util as _util
 import pymel.internal.factories as _factories
 import pymel.core.general as _general
@@ -153,7 +153,7 @@ def ikHandle(*args, **kwargs):
             res = _factories.toPyNodeList(res)
     elif (not kwargs.get('edit', kwargs.get('e', False))
             and isinstance(res, list) and len(res) == 2
-            and all(isinstance(x, basestring) for x in res)):
+            and all(isinstance(x, (bytes, str)) for x in res)):
         handleName, effectorName = res
         # ikHandle doesn't support a parent kwarg, so result should always be
         # grouped under the world...

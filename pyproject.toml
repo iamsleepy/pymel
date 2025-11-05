@@ -24,6 +24,7 @@ sphinx = ">=8.2.3"
 jinja2 = ">=3.1.2"
 sphinx_rtd_theme = ">=3.0.2"
 sphinxcontrib-jquery = ">=4.1"
+beautifulsoup4 = "^4.8.2"
 
 [tool.poetry.scripts]
 ipymel = "pymel.tools.ipymel:main"

@@ -3,7 +3,7 @@ Contains classes corresponding to the Maya type hierarchy, including `DependNode
 """
 from builtins import range
 from builtins import str
-from past.builtins import basestring
+
 import sys
 import os
 import re
@@ -2076,7 +2076,7 @@ class DagNode(Entity):
 #                    self._updateName()
 #                else :
 #                    raise TypeError, "%r might be a dependencyNode, but not a dagNode" % arg
-#            elif isinstance(arg, basestring) :
+#            elif isinstance(arg, (bytes, str)) :
 #                obj = _api.toMObject (arg)
 #                if obj :
 #                    # creation for existing object
@@ -9339,7 +9339,7 @@ class SelectionSet(_api.MSelectionList, metaclass=_factories.MetaMayaTypeRegistr
                     self.apicls.add(self, obj.__apiobject__(), True)
     #            elif isinstance(obj, Component):
     #                sel.add( obj.__apiobject__(), True )
-                elif isinstance(obj, basestring):
+                elif isinstance(obj, (bytes, str)):
                     self.apicls.add(self, obj)
                 else:
                     raise TypeError
@@ -9807,7 +9807,7 @@ class ObjectSet(Entity):
 #        return sets( self, copy=True )
 #
 #    def difference(self, elements):
-#        if isinstance(elements,basestring):
+#        if isinstance(elements,(bytes, str)):
 #            elements = cmds.sets( elements, q=True)
 #        return list(set(self.elements()).difference(elements))
 #
@@ -9830,7 +9830,7 @@ class ObjectSet(Entity):
 #            pass
 #
 #    def intersection(self, elements):
-#        if isinstance(elements,basestring):
+#        if isinstance(elements,(bytes, str)):
 #            elements = cmds.sets( elements, q=True)
 #        return set(self.elements()).intersection(elements)
 #
@@ -9843,12 +9843,12 @@ class ObjectSet(Entity):
 #        return sets( self, remove=[element])
 #
 #    def symmetric_difference(self, elements):
-#        if isinstance(elements,basestring):
+#        if isinstance(elements,(bytes, str)):
 #            elements = cmds.sets( elements, q=True)
 #        return set(self.elements()).symmetric_difference(elements)
 #
 #    def union( self, elements ):
-#        if isinstance(elements,basestring):
+#        if isinstance(elements,(bytes, str)):
 #            elements = cmds.sets( elements, q=True)
 #        return set(self.elements()).union(elements)
 #

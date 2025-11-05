@@ -38,11 +38,10 @@ so you can use object-oriented path methods with the results::
     Path('...test.ma')
 
 """
-from past.builtins import cmp
 from builtins import zip
 from builtins import range
 from builtins import str
-from past.builtins import basestring
+
 from builtins import object
 import sys
 import os
@@ -276,7 +275,9 @@ class Namespace(str):
         return "%s:%s" % (self.rstrip(':'), other.lstrip(":"))
 
     def __cmp__(self, other):
-        return cmp(self.strip(":"), str(other).strip(":"))
+        a = self.split(":")
+        b = other.split(":")
+        return (a > b) - (a < b)
 
     __eq__ = lambda self, other: self.__cmp__(other) == 0
     __ne__ = lambda self, other: self.__cmp__(other) != 0
@@ -1494,7 +1495,7 @@ class FileReference(object):
         import maya.cmds as mcmds
         self._refNode = None
         if pathOrRefNode:
-            if isinstance(pathOrRefNode, (basestring, Path)):
+            if isinstance(pathOrRefNode, ((bytes, str), Path)):
                 try:
                     self._refNode = general.PyNode(
                         mcmds.referenceQuery(str(pathOrRefNode), referenceNode=1))

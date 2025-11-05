@@ -4,7 +4,7 @@ Regenerate the core modules using parsed data and templates
 from builtins import zip
 from builtins import range
 from builtins import open
-from past.builtins import basestring
+
 from builtins import object
 import compileall
 import inspect
@@ -85,7 +85,7 @@ class NewOverrideError(RuntimeError):
 
 def underscoreSortKey(val):
     '''Sort key to make underscores come before numbers / letters'''
-    if isinstance(val, basestring):
+    if isinstance(val, (bytes, str)):
         # 07 is the "bell" character - shouldn't generally be in strings!
         return val.replace('_', '\x07')
     return val
@@ -338,7 +338,7 @@ def functionTemplateFactory(funcName, module, returnFunc=None,
 
 
 def _getModulePath(module):
-    if isinstance(module, basestring):
+    if isinstance(module, (bytes, str)):
         this = sys.modules[__name__]
         root = os.path.dirname(os.path.dirname(this.__file__))
         return os.path.join(root, *module.split('.')) + '.py'
@@ -386,7 +386,7 @@ class VersionedCaches(object):
     @classmethod
     def apiVersion(cls, version):
         # type: (Union[str, int]) -> int
-        if isinstance(version, basestring):
+        if isinstance(version, (bytes, str)):
             return cls.strVersionToApi(version)
         elif isinstance(version, int) and version > 200000:
             return version
@@ -1724,7 +1724,7 @@ class ApiMethodsGenerator(BaseGenerator):
                         wasEnabled = self.methodWasFormerlyEnabled(basePymelName)
                         if wasEnabled:
                             deprecationCall = "@_f.deprecated"
-                            if isinstance(wasEnabled, basestring):
+                            if isinstance(wasEnabled, (bytes, str)):
                                 deprecationCall += "({!r})".format(wasEnabled)
                             _logger.info(
                                 "{}.{}: Adding disabled method as deprecated."

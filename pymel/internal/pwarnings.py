@@ -4,7 +4,7 @@ and define a UserWarning class that does only print it's message (no line or mod
 
 
 """
-from past.builtins import basestring
+
 import warnings
 
 
@@ -150,7 +150,7 @@ def deprecated(funcOrMessage=None, className=None,
     if funcOrMessage is None:
         message = baseMessage
         return deprecated2
-    elif isinstance(funcOrMessage, basestring):
+    elif isinstance(funcOrMessage, (bytes, str)):
         if baseMessage is None:
             message = funcOrMessage
         else:

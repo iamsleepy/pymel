@@ -47,7 +47,6 @@ We do NOT recommend using it in external code...
 
 # removed as it's 2.5 only
 # import functools as ftools
-from past.builtins import cmp
 from builtins import next
 from builtins import range
 from builtins import object
@@ -519,7 +518,7 @@ class MetaTree(type):
             element._set_parent(parent)
 
         def __cmp__(self, other):
-            return cmp(self.value, other.value)
+            return (self.value > other.value) - (self.value < other.value)
 
         __le__ = lambda self, other: self.__cmp__(other) <= 0
         __lt__ = lambda self, other: self.__cmp__(other) < 0

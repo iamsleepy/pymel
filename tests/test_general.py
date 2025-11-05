@@ -1210,7 +1210,7 @@ class test_PyNodeWraps(unittest.TestCase):
             select('pCube1', 'pCube2')
             from maya.mel import eval as mel
             mel("Art3dPaintTool")
-            # lich: there is no color attribute in openPBRSurface shader node in Maya 2026, use baseColor instead
+            # cxli: there is no color attribute in openPBRSurface shader node in Maya 2026, use baseColor instead
             version = cmds.about(api=1)
             if version >= 20260000:
                 mel("art3dPaintAssignFileTextures baseColor")

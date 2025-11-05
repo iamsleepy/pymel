@@ -28,7 +28,6 @@ def _hashable(x):
     return True
 
 builtin_objs = set(x for x in builtins.__dict__.values() if _hashable(x))
-basestring = str
 
 verbose = False
 
@@ -251,7 +250,7 @@ def is_named_tuple(cls):
     if not isinstance(fields, tuple):
         # print "no fields"
         return False
-    if not all(isinstance(f, basestring) for f in fields):
+    if not all(isinstance(f, (bytes, str)) for f in fields):
         # print "non-string fields"
         return False
 
@@ -293,7 +292,7 @@ class ModuleNamesVisitor(ast.NodeVisitor):
     def add_names(self, obj):
         # print "add_names: %r" % obj
         # string... add it!
-        if isinstance(obj, basestring):
+        if isinstance(obj, (bytes, str)):
             self.names.add(obj)
 
         # A name node... add if the context is right
@@ -980,7 +979,7 @@ class StubDoc(pydoc.Doc):
             return
 
     def _module_has_static_name(self, module, name):
-        if isinstance(module, basestring):
+        if isinstance(module, (bytes, str)):
             module = sys.modules[module]
         elif not isinstance(module, types.ModuleType):
             raise TypeError(module)

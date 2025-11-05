@@ -4,7 +4,7 @@ Convert python callables into MEL procedures
 from builtins import filter
 from builtins import zip
 from builtins import range
-from past.builtins import basestring
+
 import inspect
 import re
 import types
@@ -27,7 +27,7 @@ _functionStore = {}
 def _getFunction(function):
     # type: (Union[Callable, str]) -> Callable
     # function is a string, so we must import its module and get the function object
-    if isinstance(function, basestring):
+    if isinstance(function, (bytes, str)):
         buf = function.split()
         funcName = buf.pop(-1)
         moduleName = '.'.join(buf)
