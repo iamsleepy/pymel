@@ -104,11 +104,7 @@ def pytest_test(argv, doctest=True, warnings=True):
     new_args = [
         'pytest',
         '-vv',  # verbose
-        '-rfE',
-        '-l',
-        '--tb=native',
-        '--xfail-tb',
-        '--full-trace'# print summary with (f)ailed and (E)rror
+        '-rfE', # print summary with (f)ailed and (E)rror
     ]
     if doctest:
         new_args.append('--doctest-modules')
