@@ -104,7 +104,11 @@ def pytest_test(argv, doctest=True, warnings=True):
     new_args = [
         'pytest',
         '-vv',  # verbose
-        '-rfE',  # print summary with (f)ailed and (E)rror
+        '-rfE',
+        '-l',
+        '--tb=native',
+        '--xfail-tb',
+        '--full-trace'# print summary with (f)ailed and (E)rror
     ]
     if doctest:
         new_args.append('--doctest-modules')
@@ -178,11 +182,11 @@ def main(argv):
         if isMayaOutput(sys.stderr):
             print("Redirecting sys.stderr to sys.__stderr__...")
             saved_stderr = sys.stderr
-            sys.stderr = sys.__stderr__
+            #sys.stderr = sys.__stderr__
         if isMayaOutput(sys.stdout):
             print("Redirecting sys.stdout to sys.__stdout__...")
             saved_stdout = sys.stdout
-            sys.stdout = sys.__stdout__
+            #sys.stdout = sys.__stdout__
 
     try:
         testsDir = parsed.tests_dir
@@ -250,8 +254,9 @@ def main(argv):
 
             pyCmd = '''\
 import sys
+import inspect;               
 sys.argv = {newArgs!r}
-with open({filepath!r}) as f:
+with open({filepath!r}) as f:    
     exec(compile(f.read(), {filepath!r}, 'exec'))
 '''.format(newArgs=newArgs, filepath=THIS_FILE)
             melCmd = 'python("{}")'.format(pyCmd.replace('\\', '\\\\')

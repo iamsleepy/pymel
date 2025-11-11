@@ -111,8 +111,11 @@ def mayaDocsLocation(version=None):
         else:
             short_version = versions.shortName()
         docLocation = os.path.join(docBaseDir, 'Maya%s' % short_version, 'en_US')
-
-    return os.path.realpath(docLocation)
+    # Maya is no longer ship with documents, let's also check .mayaDocs
+    result = os.path.realpath(docLocation)
+    if not os.path.exists(result):
+        result = os.path.normpath(os.path.dirname(os.path.abspath(__file__)) + "/../../.mayaDocs")
+    return result
 
 
 # The docs sometime contain entities as tags, like <lsquo />, instead of &lsquo;

@@ -258,8 +258,8 @@ class DependNode(general.PyNode, metaclass=_factories.MetaMayaTypeRegistry):
         Examples
         --------
         >>> import pymel.core as pm
-        >>> pm.newFile(f=1)
-        ''
+        >>> ();pm.newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> node = pm.createNode('blinn')
 
         >>> pm.namespace(add='foo')
@@ -1620,8 +1620,8 @@ class DagNode(Entity):
         Examples
         --------
         >>> import pymel.core as pm
-        >>> pm.newFile(f=1)
-        ''
+        >>> ();pm.newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> cube1 = pm.polyCube()[0]
         >>> cube2 = pm.polyCube()[0]
         >>> cube3 = pm.polyCube()[0]
@@ -1754,8 +1754,8 @@ class DagNode(Entity):
         Examples
         --------
         >>> import pymel.core as pm
-        >>> pm.newFile(f=1)
-        ''
+        >>> ();pm.newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> cube1 = pm.polyCube()[0]
         >>> cube2 = pm.polyCube()[0]
         >>> cube3 = pm.polyCube()[0]
@@ -1820,8 +1820,8 @@ class DagNode(Entity):
         Examples
         --------
         >>> import pymel.core as pm
-        >>> pm.newFile(f=1)
-        ''
+        >>> ();pm.newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> cube1 = pm.polyCube()[0]
         >>> cube2 = pm.polyCube()[0]
         >>> cube3 = pm.polyCube()[0]
@@ -1889,8 +1889,8 @@ class DagNode(Entity):
         Examples
         --------
         >>> import pymel.core as pm
-        >>> pm.newFile(f=1)
-        ''
+        >>> ();pm.newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> cube1 = pm.polyCube()[0]
         >>> cube2 = pm.polyCube()[0]
         >>> cube3 = pm.polyCube()[0]
@@ -2287,8 +2287,8 @@ class DagNode(Entity):
         Examples
         --------
         >>> from pymel.core import *
-        >>> f=newFile(f=1) #start clean
-        >>>
+        >>> ();f=newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> s = polyPlane()[0]
         >>> instance(s)
         [nt.Transform('pPlane2')]
@@ -9618,8 +9618,8 @@ class ObjectSet(Entity):
     create some sets:
 
         >>> from pymel.core import *
-        >>> f=newFile(f=1) #start clean
-        >>>
+        >>> ();f=newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> s = sets()  # create an empty set
         >>> s.union( ls( type=nt.Camera) )  # add some cameras to it
         >>> s.members()  # doctest: +SKIP

@@ -254,18 +254,23 @@ def initMEL():
         callbacks.append(om.MDGMessage.addNodeAddedCallback(
             logIkSolverCreation, "ikSolver"))
 
-        for f in startup:
-            _logger.debug("running: %s" % f)
-            if f is not None:
-                if os.path.isabs(f) and not os.path.exists(f):
-                    _logger.warning("Maya startup file %s does not exist" % f)
-                else:
-                    # encoding to unicode_escape should add escape
-                    # sequences, but also make sure everything is in basic
-                    # ascii - so if we decode utf-8 (or ascii), it should
-                    # give us a string which is escaped
-                    f = f.encode('unicode_escape').decode('utf-8')
-                    maya.mel.eval('source "%s"' % f)
+        with open(r'd:\test.txt', 'w+') as ff:
+            ff.write('debug\n')
+            for f in startup:
+                _logger.debug("running: %s" % f)
+                if f is not None:
+                    if os.path.isabs(f) and not os.path.exists(f):
+                        _logger.warning("Maya startup file %s does not exist" % f)
+                    else:
+                        # encoding to unicode_escape should add escape
+                        # sequences, but also make sure everything is in basic
+                        # ascii - so if we decode utf-8 (or ascii), it should
+                        # give us a string which is escaped
+                        f = f.encode('unicode_escape').decode('utf-8')
+                        ff.write(f)
+                        ff.write('\n')
+                        ff.flush()
+                        maya.mel.eval('source "%s"' % f)
 
     except Exception as e:
         _logger.error("could not perform Maya initialization sequence: failed "

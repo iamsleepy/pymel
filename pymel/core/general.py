@@ -2246,8 +2246,8 @@ Modifications
   - resolved confusing syntax: operating set is always the first and only arg:
 
         >>> from pymel.core import *
-        >>> f=newFile(f=1) #start clean
-        >>>
+        >>> ();f=newFile(f=1);() #doctest: +ELLIPSIS
+        (...)
         >>> shdr, sg = createSurfaceShader( 'blinn' )
         >>> shdr
         nt.Blinn('blinn1')
@@ -3498,8 +3498,8 @@ class Attribute(PyNode, metaclass=_factories.MetaMayaTypeRegistry):
         iterator for multi-attributes
 
             >>> from pymel.core import *
-            >>> f=newFile(f=1) #start clean
-            >>>
+            >>> ();f=newFile(f=1);() #doctest: +ELLIPSIS
+            (...)
             >>> at = PyNode( 'defaultLightSet.dagSetMembers' )
             >>> nt.SpotLight()
             nt.SpotLight('spotLightShape1')
@@ -3852,8 +3852,8 @@ class Attribute(PyNode, metaclass=_factories.MetaMayaTypeRegistry):
         that you use `Attribute.numElements` instead.  This is a maya bug, *not* a pymel bug.
 
             >>> from pymel.core import *
-            >>> f=newFile(f=1) #start clean
-            >>>
+            >>> ();f=newFile(f=1);() # doctest: +ELLIPSIS
+            (...)
             >>> dls = SCENE.defaultLightSet
             >>> dls.dagSetMembers.numElements()
             0

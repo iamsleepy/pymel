@@ -19,6 +19,7 @@ Some of the open issues with easy fixes.
 - Fixing supports for command flags without shortname(e.g., affects)
 - Make some of anonymous enums constants(e.g., MFnDagNode.kNextPos, MGeometryList.kAll, etc...)
 - Added an encoding workaround for building step 3.
+- Now also check .mayaDocs for internalCmds.txt/internalCommandList.txt
 
 Additions
 ----------------------------------
@@ -33,10 +34,12 @@ Non-Backward Compatible Changes
 ----------------------------------
 Open issues
 ----------------------------------
-- Support div class version baseline in the document.
-- Replace pipes in the tests module for Python 3.13
-- GUI Tests currently is redirected to output window.
+- It's able to process version baseline class now, but no real usage has been implemented for it.
+- GUI Tests currently is redirected to script editor.
 - Step3 will create an extra empty line at the beginning of generated codes.
+- pm.core.newFile will return True in doctest in Maya 2026.3 gui test,
+  but I couldn't reproduce it with test code in script editor.
+  Current use ellipsis(...) in the doctest to get around of it.
 
 ==================================
 Version 1.5.0

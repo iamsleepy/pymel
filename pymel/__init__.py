@@ -25,6 +25,6 @@ Attitude Studio, and ImageMovers Digital.
 #standard_library.install_aliases()
 
 __versiontuple__ = (1, 6, 0)
-__version_suffix__ = 'rc1'
+__version_suffix__ = 'rc2'
 __version__ = '.'.join(str(x) for x in __versiontuple__) + __version_suffix__
 __authors__ = ['Chad Dombrova', 'Paul Molodowitch', 'Olivier Renouard', 'Ofer Koren']
