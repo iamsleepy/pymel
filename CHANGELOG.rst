@@ -5,6 +5,34 @@ What's New
 **********
 
 ==================================
+Version 1.7.0
+==================================
+
+----------------------------------
+Fixes
+----------------------------------
+- Update building script for Python 3.13
+
+Additions
+----------------------------------
+- Added support for Maya 2027
+- Enabled override methods for following commands:
+    'MFnBlendShapeDeformer.setWeight' / ('BlendShape', 'getWeight')
+    'MFnDependencyNode.findAlias' / ('PolySeparate', 'findAlias')
+    'MFnDependencyNode.getAffectedAttributes' / ('PolySeparate', 'getAffectedAttributes')
+    'MFnDependencyNode.getAffectedByAttributes' / ('PolySeparate', 'getAffectedByAttributes')
+    'MFnDependencyNode.getAliasList' / ('PolySeparate', 'getAliasList')
+    'MFnDependencyNode.getConnections' / ('PolySeparate', 'getConnections')
+    'MFnDependencyNode.plugsAlias' / ('PolySeparate', 'plugsAlias')
+    'MFnDependencyNode.setAlias' / ('PolySeparate', 'setAlias')
+
+----------------------------------
+Non-Backward Compatible Changes
+----------------------------------
+- Dropped support for Maya 2023
+
+
+==================================
 Version 1.6.0
 ==================================
 

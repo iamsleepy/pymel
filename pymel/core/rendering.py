@@ -379,7 +379,7 @@ def nodeIconButton(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('c', 'command', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'vcc', 'visibleChangeCommand'):
+    for key in ('c', 'command', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):

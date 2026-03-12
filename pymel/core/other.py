@@ -542,13 +542,20 @@ def _getParserClass(strObj):
 
 
 
+
 # ------ Do not edit below this line --------
 
 TanimLayer = _factories.getCmdFunc('TanimLayer')
 
 TrenderSetupStates = _factories.getCmdFunc('TrenderSetupStates')
 
+UfeCommandObject = _factories.getCmdFunc('UfeCommandObject')
+
 adpAnalyticsDialog = _factories.getCmdFunc('adpAnalyticsDialog')
+
+adpAssistant = _factories.getCmdFunc('adpAssistant')
+
+adpWaypoint = _factories.getCmdFunc('adpWaypoint')
 
 adskAsset = _factories.getCmdFunc('adskAsset')
 
@@ -576,6 +583,8 @@ agFormatIn = _factories.getCmdFunc('agFormatIn')
 
 agFormatOut = _factories.getCmdFunc('agFormatOut')
 
+animContextManager = _factories.getCmdFunc('animContextManager')
+
 artAttr = _factories.getCmdFunc('artAttr')
 
 artAttrSkinPaint = _factories.getCmdFunc('artAttrSkinPaint')
@@ -599,6 +608,22 @@ clearShear = _factories.getCmdFunc('clearShear')
 copyNode = _factories.getCmdFunc('copyNode')
 
 crashInfoCmd = _factories.getCmdFunc('crashInfoCmd')
+
+@_factories.addCmdDocs
+def cutView(*args, **kwargs):
+    if len(args):
+        doPassSelf = kwargs.pop('passSelf', False)
+    else:
+        doPassSelf = False
+    for key in ('dgc', 'dpc', 'dragCallback', 'dropCallback', 'vcc', 'visibleChangeCommand'):
+        try:
+            cb = kwargs[key]
+            if callable(cb):
+                kwargs[key] = _factories.makeUICallback(cb, args, doPassSelf)
+        except KeyError:
+            pass
+    res = cmds.cutView(*args, **kwargs)
+    return res
 
 dagCommandWrapper = _factories.getCmdFunc('dagCommandWrapper')
 
@@ -746,7 +771,7 @@ def repeatLast(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('ac', 'acl', 'addCommand', 'addCommandLabel', 'cl', 'cnl', 'commandList', 'commandNameList'):
+    for key in ('ac', 'acl', 'addCommand', 'addCommandLabel', 'cl', 'cnl', 'commandList', 'commandNameList', 'pyc', 'pythonCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -801,3 +826,5 @@ def timeRangeInfo(*args, **kwargs):
 timeSliderCustomDraw = _factories.getCmdFunc('timeSliderCustomDraw')
 
 warnUserDialog = _factories.getCmdFunc('warnUserDialog')
+
+workspacePanel = _factories.getCmdFunc('workspacePanel')

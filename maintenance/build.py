@@ -46,10 +46,16 @@ env = Environment(loader=PackageLoader('maintenance', 'templates'),
 def makeTypeComment(signature):
     # type: (factories.Annotations) -> str
     args = signature.get('args')
+    argSig = '...'
     if args is not None:
-        argSig = ', '.join(args)
-    else:
-        argSig = '...'
+        valid_args = []
+        for arg in args:
+            if arg is not None:
+                valid_args.append(arg)
+            else:
+                valid_args.append('...')
+        if len(valid_args) > 0:
+            argSig = ', '.join(valid_args)
     comment = '# type: (%s)' % argSig
     result = signature.get('result')
     if result is None:

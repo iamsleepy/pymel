@@ -1470,9 +1470,11 @@ class MetaTree(type):
                 if k == '__doc__':
                     newdict[k] = newdict[k] + "\n" + basedict[k]
                 else:
-                    warnings.warn(
-                        "Can't override core method or property %s in Trees "
-                        "(trying to create class '%s')" % (k, classname))
+                    # Python 3.13 add two core attributes, excluding them here to avoid warning message.
+                    if k != '__static_attributes__' and k!= '__firstlineno__':
+                        warnings.warn(
+                            "Can't override core method or property %s in Trees "
+                            "(trying to create class '%s')" % (k, classname))
             else:
                 newdict[k] = basedict[k]
 

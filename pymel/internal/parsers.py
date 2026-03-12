@@ -940,8 +940,9 @@ class ApiDocParser(object, metaclass=ABCMeta):
 
         return pymelNames, sorted(pairsList)
 
-    def getClassFilename(self):
-        filename = 'class'
+    # Try to add struct
+    def getClassFilename(self, is_class = True):
+        filename = 'class' if is_class else 'struct'
         for tok in self._capitalizedRe.split(self.apiClassName):
             if tok:
                 if tok[0].isupper():
@@ -1317,6 +1318,9 @@ class ApiDocParser(object, metaclass=ABCMeta):
         self.apiClassName = apiClassName
         self.apiClass = getattr(self.apiModule, self.apiClassName)
         self.docfile = self.getClassPath()
+        if not os.path.exists(self.docfile):
+            _logger.info("class file %s doesn't exist, try struct", self.docfile)
+            self.docfile = self.getClassPath(False)
 
         _logger.info("parsing file %s", self.docfile)
 
@@ -1379,7 +1383,7 @@ class ApiDocParser(object, metaclass=ABCMeta):
         raise NotImplementedError()
 
     @abstractmethod
-    def getClassPath(self):
+    def getClassPath(self, is_class = True):
         raise NotImplementedError()
 
     @abstractmethod
@@ -1407,6 +1411,8 @@ class XmlApiDocParser(ApiDocParser):
         self.tree = ET.parse(self.docfile)
         self.root = self.tree.getroot()
         self.cdef = self.root.find(".//compounddef[@kind='class'][@id='{}']".format(self.baseFilename))
+        if self.cdef is None:
+            self.cdef = self.root.find(".//compounddef[@kind='struct'][@id='{}']".format(self.baseFilename))
         self.numAnonymousEnums = 0
 
     def parseArgTypes(self):
@@ -2007,8 +2013,8 @@ class XmlApiDocParser(ApiDocParser):
 
         return methodName, returnInfo
 
-    def getClassPath(self):
-        self.baseFilename = self.getClassFilename()
+    def getClassPath(self, is_class = True):
+        self.baseFilename = self.getClassFilename(is_class)
         filename = self.baseFilename + '.xml'
         apiBase = os.path.join(self.docloc, 'xml')
         return os.path.join(apiBase, filename)
@@ -2352,8 +2358,8 @@ class HtmlApiDocParser(ApiDocParser):
         verStr = match.group(1)
         return tuple(int(x) for x in verStr.split('.'))
 
-    def getClassPath(self):
-        filename = self.getClassFilename() + '.html'
+    def getClassPath(self, is_class = True):
+        filename = self.getClassFilename(is_class) + '.html'
         apiBase = os.path.join(self.docloc, 'API')
         path = os.path.join(apiBase, filename)
         if not os.path.isfile(path):

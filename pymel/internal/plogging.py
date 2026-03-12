@@ -137,36 +137,38 @@ def pymelLogFileConfig(fname, defaults=None, disable_existing_loggers=False):
             oldLogHandlers[loggerName] = logger.handlers[:]
 
     # critical section
-    logging._acquireLock()
-    try:
-        # Handlers add themselves to logging._handlers
-        handlers = logging.config._install_handlers(cp, formatters)
+    with logging._lock:
+        try:
+            # Handlers add themselves to logging._handlers
+            handlers = logging.config._install_handlers(cp, formatters)
 
-        logging.config._install_loggers(cp, handlers, 0)
+            logging.config._install_loggers(cp, handlers, 0)
 
-        # Now re-add any removed handlers, if needed
-        secNames = cp.get('loggers', 'keys').split(',')
-        secNames = ['logger_' + x.strip() for x in secNames]
-        _addOldHandlers(root, rootHandlers, 'logger_root', cp)
-        for secName in secNames:
-            if secName == 'logger_root':
-                logger = root
-                oldHandlers = rootHandlers
-            else:
-                logName = cp.get(secName, 'qualname')
-                logger = logging.getLogger(logName)
-                oldHandlers = oldLogHandlers.get(logName)
-            if oldHandlers:
-                _addOldHandlers(logger, oldHandlers, secName, cp)
+            # Now re-add any removed handlers, if needed
+            secNames = cp.get('loggers', 'keys').split(',')
+            secNames = ['logger_' + x.strip() for x in secNames]
+            _addOldHandlers(root, rootHandlers, 'logger_root', cp)
+            for secName in secNames:
+                if secName == 'logger_root':
+                    logger = root
+                    oldHandlers = rootHandlers
+                else:
+                    logName = cp.get(secName, 'qualname')
+                    logger = logging.getLogger(logName)
+                    oldHandlers = oldLogHandlers.get(logName)
+                if oldHandlers:
+                    _addOldHandlers(logger, oldHandlers, secName, cp)
 
-        # if root logger level not explicitly set in the pymel.conf file,
-        # then set it back to the original value.  The root logger always
-        # has to have a level.
-        if logging.root.level == logging.NOTSET:
-            logging.root.setLevel(root_logger_level)
+            # if root logger level not explicitly set in the pymel.conf file,
+            # then set it back to the original value.  The root logger always
+            # has to have a level.
+            if logging.root.level == logging.NOTSET:
+                logging.root.setLevel(root_logger_level)
+        finally:
+            None
 
-    finally:
-        logging._releaseLock()
+
+
 
 
 def _addOldHandlers(logger, oldHandlers, secName, configParser):

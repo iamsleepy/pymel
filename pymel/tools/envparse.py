@@ -208,7 +208,7 @@ class ValueLex(object):
         r'\$[^\\^/^:^*^"^<^>^|^=^ ^\t^\n^#^$]+'
         if self.os == 'nt':
             if not self.warn.VAR:
-                warnings.warn("Line %i: $VAR should be used on linux or osx, \%VAR\% on nt" % self.lexer.lineno, ExecutionWarning)
+                warnings.warn("Line %i: $VAR should be used on linux or osx, %%VAR%% on nt" % self.lexer.lineno, ExecutionWarning)
                 self.warn.VAR = True
         v = t.value.lstrip('$')
         if v in self.symbols:
@@ -219,7 +219,7 @@ class ValueLex(object):
         r'\%[^\\^/^:^*^"^<^>^|^=^ ^\t^\n^#]+\%'
         if self.os != 'nt':
             if not self.warn.VAR:
-                warnings.warn("Line %i: $VAR should be used on linux or osx, \%VAR\% on nt" % self.lexer.lineno, ExecutionWarning)
+                warnings.warn("Line %i: $VAR should be used on linux or osx, %%VAR%% on nt" % self.lexer.lineno, ExecutionWarning)
                 self.warn.VAR = True
         v = t.value.strip('%')
         if v in self.symbols:

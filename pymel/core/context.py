@@ -72,6 +72,8 @@ boxDollyCtx = _factories.getCmdFunc('boxDollyCtx')
 
 boxZoomCtx = _factories.getCmdFunc('boxZoomCtx')
 
+cameraSequencerCurrentTimeCtx = _factories.getCmdFunc('cameraSequencerCurrentTimeCtx')
+
 clipEditorCurrentTimeCtx = _factories.getCmdFunc('clipEditorCurrentTimeCtx')
 
 createNurbsCircleCtx = _factories.getCmdFunc('createNurbsCircleCtx')
@@ -357,6 +359,8 @@ def scriptCtx(*args, **kwargs):
             pass
     res = cmds.scriptCtx(*args, **kwargs)
     return res
+
+sculptKeyCtx = _factories.getCmdFunc('sculptKeyCtx')
 
 sculptMeshCacheCtx = _factories.getCmdFunc('sculptMeshCacheCtx')
 

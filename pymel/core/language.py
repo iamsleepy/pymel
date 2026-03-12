@@ -1312,6 +1312,8 @@ def scriptJob(*args, **kwargs):
 
 sortCaseInsensitive = _factories.getCmdFunc('sortCaseInsensitive')
 
+sortStringArray = _factories.getCmdFunc('sortStringArray')
+
 stackTrace = _factories.getCmdFunc('stackTrace')
 
 waitCursor = _factories.getCmdFunc('waitCursor')

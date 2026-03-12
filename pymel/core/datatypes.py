@@ -2338,43 +2338,43 @@ class Quaternion(Matrix):
 
     @_f.addApiDocs(_api.MQuaternion, 'asEulerRotation')
     def asEulerRotation(self):
-        # type: () -> EulerRotation
+        # type: (...) -> EulerRotation
         res = _api.MQuaternion.asEulerRotation(self)
         return _f.ApiArgUtil._castResult(self, res, 'MEulerRotation', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'conjugateIt')
     def conjugateIt(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.conjugateIt(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'exp')
     def exp(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.exp(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'invertIt')
     def invertIt(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.invertIt(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'log')
     def log(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.log(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'negateIt')
     def negateIt(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.negateIt(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MQuaternion, 'normalizeIt')
     def normalizeIt(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MQuaternion.normalizeIt(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
@@ -2523,19 +2523,19 @@ class TransformationMatrix(Matrix):
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'asMatrixInverse')
     def asMatrixInverse(self):
-        # type: () -> Matrix
+        # type: (...) -> Matrix
         res = _api.MTransformationMatrix.asMatrixInverse(self)
         return _f.ApiArgUtil._castResult(self, res, 'MMatrix', None)
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'asRotateMatrix')
     def asRotateMatrix(self):
-        # type: () -> Matrix
+        # type: (...) -> Matrix
         res = _api.MTransformationMatrix.asRotateMatrix(self)
         return _f.ApiArgUtil._castResult(self, res, 'MMatrix', None)
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'asScaleMatrix')
     def asScaleMatrix(self):
-        # type: () -> Matrix
+        # type: (...) -> Matrix
         res = _api.MTransformationMatrix.asScaleMatrix(self)
         return _f.ApiArgUtil._castResult(self, res, 'MMatrix', None)
 
@@ -2557,13 +2557,13 @@ class TransformationMatrix(Matrix):
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'rotationOrientation')
     def getRotationOrientation(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MTransformationMatrix.rotationOrientation(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'getRotationQuaternion')
     def getRotationQuaternion(self):
-        # type: () -> Tuple[float, float, float, float]
+        # type: (...) -> Tuple[float, float, float, float]
         do, final_do, outTypes = _f.getDoArgs([], [('x', 'double', 'out', None), ('y', 'double', 'out', None), ('z', 'double', 'out', None), ('w', 'double', 'out', None)])
         res = _api.MTransformationMatrix.getRotationQuaternion(self, *final_do)
         return _f.processApiResult(res, outTypes, do)
@@ -2623,7 +2623,7 @@ class TransformationMatrix(Matrix):
 
     @_f.addApiDocs(_api.MTransformationMatrix, 'rotationOrder')
     def rotationOrder(self):
-        # type: () -> TransformationMatrix.RotationOrder
+        # type: (...) -> TransformationMatrix.RotationOrder
         res = _api.MTransformationMatrix.rotationOrder(self)
         return _f.ApiArgUtil._castResult(self, res, ('MTransformationMatrix', 'RotationOrder'), None)
 
@@ -3069,31 +3069,31 @@ class EulerRotation(Array, metaclass=MetaMayaArrayTypeWrapper):
 
     @_f.addApiDocs(_api.MEulerRotation, 'alternateSolution')
     def alternateSolution(self):
-        # type: () -> EulerRotation
+        # type: (...) -> EulerRotation
         res = _api.MEulerRotation.alternateSolution(self)
         return _f.ApiArgUtil._castResult(self, res, 'MEulerRotation', None)
 
     @_f.addApiDocs(_api.MEulerRotation, 'asMatrix')
     def asMatrix(self):
-        # type: () -> Matrix
+        # type: (...) -> Matrix
         res = _api.MEulerRotation.asMatrix(self)
         return _f.ApiArgUtil._castResult(self, res, 'MMatrix', None)
 
     @_f.addApiDocs(_api.MEulerRotation, 'asQuaternion')
     def asQuaternion(self):
-        # type: () -> Quaternion
+        # type: (...) -> Quaternion
         res = _api.MEulerRotation.asQuaternion(self)
         return _f.ApiArgUtil._castResult(self, res, 'MQuaternion', None)
 
     @_f.addApiDocs(_api.MEulerRotation, 'asVector')
     def asVector(self):
-        # type: () -> Vector
+        # type: (...) -> Vector
         res = _api.MEulerRotation.asVector(self)
         return _f.ApiArgUtil._castResult(self, res, 'MVector', None)
 
     @_f.addApiDocs(_api.MEulerRotation, 'bound')
     def bound(self):
-        # type: () -> EulerRotation
+        # type: (...) -> EulerRotation
         res = _api.MEulerRotation.bound(self)
         return _f.ApiArgUtil._castResult(self, res, 'MEulerRotation', None)
 
@@ -3140,13 +3140,13 @@ class EulerRotation(Array, metaclass=MetaMayaArrayTypeWrapper):
 
     @_f.addApiDocs(_api.MEulerRotation, 'inverse')
     def inverse(self):
-        # type: () -> EulerRotation
+        # type: (...) -> EulerRotation
         res = _api.MEulerRotation.inverse(self)
         return _f.ApiArgUtil._castResult(self, res, 'MEulerRotation', None)
 
     @_f.addApiDocs(_api.MEulerRotation, 'invertIt')
     def invertIt(self):
-        # type: () -> EulerRotation
+        # type: (...) -> EulerRotation
         res = _api.MEulerRotation.invertIt(self)
         return _f.ApiArgUtil._castResult(self, res, 'MEulerRotation', None)
 
@@ -3332,10 +3332,7 @@ class Time(Unit):
     def _inCast(cls, x):
         return cls(x)._data
 # ------ Do not edit below this line --------
-    if versions.current() >= versions.v2024:
-        Unit = Enum('Unit', [('invalid', 0), ('kInvalid', 0), ('hours', 1), ('kHours', 1), ('minutes', 2), ('kMinutes', 2), ('seconds', 3), ('kSeconds', 3), ('milliseconds', 4), ('kMilliseconds', 4), ('games', 5), ('k15FPS', 5), ('kGames', 5), ('film', 6), ('k24FPS', 6), ('kFilm', 6), ('PALFrame', 7), ('k25FPS', 7), ('kPALFrame', 7), ('NTSCFrame', 8), ('k30FPS', 8), ('kNTSCFrame', 8), ('showScan', 9), ('k48FPS', 9), ('kShowScan', 9), ('PALField', 10), ('k50FPS', 10), ('kPALField', 10), ('NTSCField', 11), ('k60FPS', 11), ('kNTSCField', 11), ('k2FPS', 12), ('k3FPS', 13), ('k4FPS', 14), ('k5FPS', 15), ('k6FPS', 16), ('k8FPS', 17), ('k10FPS', 18), ('k12FPS', 19), ('k16FPS', 20), ('k20FPS', 21), ('k40FPS', 22), ('k75FPS', 23), ('k80FPS', 24), ('k100FPS', 25), ('k120FPS', 26), ('k125FPS', 27), ('k150FPS', 28), ('k200FPS', 29), ('k240FPS', 30), ('k250FPS', 31), ('k300FPS', 32), ('k375FPS', 33), ('k400FPS', 34), ('k500FPS', 35), ('k600FPS', 36), ('k750FPS', 37), ('k1200FPS', 38), ('k1500FPS', 39), ('k2000FPS', 40), ('k3000FPS', 41), ('k6000FPS', 42), ('k23_976FPS', 43), ('k29_97FPS', 44), ('k29_97DF', 45), ('k47_952FPS', 46), ('k59_94FPS', 47), ('k44100FPS', 48), ('k48000FPS', 49), ('k90FPS', 50), ('k119_88FPS', 51), ('userDef', 52), ('kUserDef', 52), ('last', 53), ('kLast', 53)], multiKeys=True)
-    else:
-        Unit = Enum('Unit', [('invalid', 0), ('kInvalid', 0), ('hours', 1), ('kHours', 1), ('minutes', 2), ('kMinutes', 2), ('seconds', 3), ('kSeconds', 3), ('milliseconds', 4), ('kMilliseconds', 4), ('games', 5), ('k15FPS', 5), ('kGames', 5), ('film', 6), ('k24FPS', 6), ('kFilm', 6), ('PALFrame', 7), ('k25FPS', 7), ('kPALFrame', 7), ('NTSCFrame', 8), ('k30FPS', 8), ('kNTSCFrame', 8), ('showScan', 9), ('k48FPS', 9), ('kShowScan', 9), ('PALField', 10), ('k50FPS', 10), ('kPALField', 10), ('NTSCField', 11), ('k60FPS', 11), ('kNTSCField', 11), ('k2FPS', 12), ('k3FPS', 13), ('k4FPS', 14), ('k5FPS', 15), ('k6FPS', 16), ('k8FPS', 17), ('k10FPS', 18), ('k12FPS', 19), ('k16FPS', 20), ('k20FPS', 21), ('k40FPS', 22), ('k75FPS', 23), ('k80FPS', 24), ('k100FPS', 25), ('k120FPS', 26), ('k125FPS', 27), ('k150FPS', 28), ('k200FPS', 29), ('k240FPS', 30), ('k250FPS', 31), ('k300FPS', 32), ('k375FPS', 33), ('k400FPS', 34), ('k500FPS', 35), ('k600FPS', 36), ('k750FPS', 37), ('k1200FPS', 38), ('k1500FPS', 39), ('k2000FPS', 40), ('k3000FPS', 41), ('k6000FPS', 42), ('k23_976FPS', 43), ('k29_97FPS', 44), ('k29_97DF', 45), ('k47_952FPS', 46), ('k59_94FPS', 47), ('k44100FPS', 48), ('k48000FPS', 49), ('k90FPS', 50), ('userDef', 51), ('kUserDef', 51), ('last', 52), ('kLast', 52)], multiKeys=True)
+    Unit = Enum('Unit', [('invalid', 0), ('kInvalid', 0), ('hours', 1), ('kHours', 1), ('minutes', 2), ('kMinutes', 2), ('seconds', 3), ('kSeconds', 3), ('milliseconds', 4), ('kMilliseconds', 4), ('games', 5), ('k15FPS', 5), ('kGames', 5), ('film', 6), ('k24FPS', 6), ('kFilm', 6), ('PALFrame', 7), ('k25FPS', 7), ('kPALFrame', 7), ('NTSCFrame', 8), ('k30FPS', 8), ('kNTSCFrame', 8), ('showScan', 9), ('k48FPS', 9), ('kShowScan', 9), ('PALField', 10), ('k50FPS', 10), ('kPALField', 10), ('NTSCField', 11), ('k60FPS', 11), ('kNTSCField', 11), ('k2FPS', 12), ('k3FPS', 13), ('k4FPS', 14), ('k5FPS', 15), ('k6FPS', 16), ('k8FPS', 17), ('k10FPS', 18), ('k12FPS', 19), ('k16FPS', 20), ('k20FPS', 21), ('k40FPS', 22), ('k75FPS', 23), ('k80FPS', 24), ('k100FPS', 25), ('k120FPS', 26), ('k125FPS', 27), ('k150FPS', 28), ('k200FPS', 29), ('k240FPS', 30), ('k250FPS', 31), ('k300FPS', 32), ('k375FPS', 33), ('k400FPS', 34), ('k500FPS', 35), ('k600FPS', 36), ('k750FPS', 37), ('k1200FPS', 38), ('k1500FPS', 39), ('k2000FPS', 40), ('k3000FPS', 41), ('k6000FPS', 42), ('k23_976FPS', 43), ('k29_97FPS', 44), ('k29_97DF', 45), ('k47_952FPS', 46), ('k59_94FPS', 47), ('k44100FPS', 48), ('k48000FPS', 49), ('k90FPS', 50), ('k119_88FPS', 51), ('userDef', 52), ('kUserDef', 52), ('last', 53), ('kLast', 53)], multiKeys=True)
 # ------ Do not edit above this line --------
 
 
@@ -3506,13 +3503,13 @@ class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry)
 
     @_f.addApiDocs(_api.MBoundingBox, 'center')
     def center(self):
-        # type: () -> Point
+        # type: (...) -> Point
         res = _api.MBoundingBox.center(self)
         return _f.ApiArgUtil._castResult(self, res, 'MPoint', None)
 
     @_f.addApiDocs(_api.MBoundingBox, 'clear')
     def clear(self):
-        # type: () -> None
+        # type: (...) -> None
         res = _api.MBoundingBox.clear(self)
         return res
 
@@ -3526,7 +3523,7 @@ class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry)
 
     @_f.addApiDocs(_api.MBoundingBox, 'depth')
     def depth(self):
-        # type: () -> float
+        # type: (...) -> float
         res = _api.MBoundingBox.depth(self)
         return _f.ApiArgUtil._castResult(self, res, 'double', None)
     d = property(depth)
@@ -3540,7 +3537,7 @@ class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry)
 
     @_f.addApiDocs(_api.MBoundingBox, 'height')
     def height(self):
-        # type: () -> float
+        # type: (...) -> float
         res = _api.MBoundingBox.height(self)
         return _f.ApiArgUtil._castResult(self, res, 'double', None)
     h = property(height)
@@ -3555,13 +3552,13 @@ class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry)
 
     @_f.addApiDocs(_api.MBoundingBox, 'max')
     def max(self):
-        # type: () -> Point
+        # type: (...) -> Point
         res = _api.MBoundingBox.max(self)
         return _f.ApiArgUtil._castResult(self, res, 'MPoint', None)
 
     @_f.addApiDocs(_api.MBoundingBox, 'min')
     def min(self):
-        # type: () -> Point
+        # type: (...) -> Point
         res = _api.MBoundingBox.min(self)
         return _f.ApiArgUtil._castResult(self, res, 'MPoint', None)
 
@@ -3574,7 +3571,7 @@ class BoundingBox( _api.MBoundingBox, metaclass=_factories.MetaMayaTypeRegistry)
 
     @_f.addApiDocs(_api.MBoundingBox, 'width')
     def width(self):
-        # type: () -> float
+        # type: (...) -> float
         res = _api.MBoundingBox.width(self)
         return _f.ApiArgUtil._castResult(self, res, 'double', None)
     w = property(width)

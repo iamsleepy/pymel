@@ -7,7 +7,7 @@ here.
 from typing import List, Optional
 import pymel.internal.cmdcache
 
-pymel.internal.cmdcache.CmdCache.version = '2023'
+pymel.internal.cmdcache.CmdCache.version = '2027'
 cmdcache = pymel.internal.cmdcache.CmdCache()
 data = cmdcache.load()
 datamap = dict(zip(cmdcache.cacheNames(), data))

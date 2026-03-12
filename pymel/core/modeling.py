@@ -438,6 +438,13 @@ def polyAverageVertex(*args, **kwargs):
     return res
 
 @_factories.addCmdDocs
+def polyAxis(*args, **kwargs):
+    res = cmds.polyAxis(*args, **kwargs)
+    if not kwargs.get('query', kwargs.get('q', False)):
+        res = _factories.maybeConvert(res, _general.PyNode)
+    return res
+
+@_factories.addCmdDocs
 def polyBevel(*args, **kwargs):
     res = cmds.polyBevel(*args, **kwargs)
     if not kwargs.get('query', kwargs.get('q', False)):
@@ -975,6 +982,20 @@ def polySewEdge(*args, **kwargs):
 polySlideEdge = _factories.getCmdFunc('polySlideEdge')
 
 @_factories.addCmdDocs
+def polySmartBevel(*args, **kwargs):
+    res = cmds.polySmartBevel(*args, **kwargs)
+    if not kwargs.get('query', kwargs.get('q', False)):
+        res = _factories.maybeConvert(res, _general.PyNode)
+    return res
+
+@_factories.addCmdDocs
+def polySmartExtrude(*args, **kwargs):
+    res = cmds.polySmartExtrude(*args, **kwargs)
+    if not kwargs.get('query', kwargs.get('q', False)):
+        res = _factories.maybeConvert(res, _general.PyNode)
+    return res
+
+@_factories.addCmdDocs
 def polySmooth(*args, **kwargs):
     res = cmds.polySmooth(*args, **kwargs)
     if not kwargs.get('query', kwargs.get('q', False)):
@@ -1077,6 +1098,13 @@ polyUVStackSimilarShells = _factories.getCmdFunc('polyUVStackSimilarShells')
 @_factories.addCmdDocs
 def polyUnite(*args, **kwargs):
     res = cmds.polyUnite(*args, **kwargs)
+    if not kwargs.get('query', kwargs.get('q', False)):
+        res = _factories.maybeConvert(res, _general.PyNode)
+    return res
+
+@_factories.addCmdDocs
+def polyUnsmooth(*args, **kwargs):
+    res = cmds.polyUnsmooth(*args, **kwargs)
     if not kwargs.get('query', kwargs.get('q', False)):
         res = _factories.maybeConvert(res, _general.PyNode)
     return res

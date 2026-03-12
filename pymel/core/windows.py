@@ -1229,7 +1229,7 @@ def iconTextButton(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('c', 'command', 'commandRepeatable', 'dcc', 'dgc', 'doubleClickCommand', 'dpc', 'dragCallback', 'dropCallback', 'handleNodeDropCallback', 'hnd', 'labelEditingCallback', 'lec', 'rpt', 'vcc', 'visibleChangeCommand'):
+    for key in ('c', 'command', 'commandRepeatable', 'dcc', 'dgc', 'doubleClickCommand', 'dpc', 'dragCallback', 'dropCallback', 'handleNodeDropCallback', 'hnd', 'labelEditingCallback', 'lec', 'rpt', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -1248,7 +1248,7 @@ def iconTextCheckBox(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('cc', 'changeCommand', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'ofc', 'offCommand', 'onCommand', 'onc', 'vcc', 'visibleChangeCommand'):
+    for key in ('cc', 'changeCommand', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'ofc', 'offCommand', 'onCommand', 'onc', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -1267,7 +1267,7 @@ def iconTextRadioButton(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('cc', 'changeCommand', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'ofc', 'offCommand', 'onCommand', 'onc', 'vcc', 'visibleChangeCommand'):
+    for key in ('cc', 'changeCommand', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'ofc', 'offCommand', 'onCommand', 'onc', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -1324,7 +1324,7 @@ def iconTextStaticLabel(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('dgc', 'dpc', 'dragCallback', 'dropCallback', 'vcc', 'visibleChangeCommand'):
+    for key in ('dgc', 'dpc', 'dragCallback', 'dropCallback', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -2000,7 +2000,7 @@ def shelfButton(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('c', 'command', 'commandRepeatable', 'dcc', 'dgc', 'doubleClickCommand', 'dpc', 'dragCallback', 'dropCallback', 'ecr', 'enableCommandRepeat', 'handleNodeDropCallback', 'hnd', 'labelEditingCallback', 'lec', 'rpt', 'vcc', 'visibleChangeCommand'):
+    for key in ('c', 'command', 'commandRepeatable', 'dcc', 'dgc', 'doubleClickCommand', 'dpc', 'dragCallback', 'dropCallback', 'ecr', 'enableCommandRepeat', 'handleNodeDropCallback', 'hnd', 'labelEditingCallback', 'lec', 'rpt', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -2473,7 +2473,7 @@ def channelBox(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('dgc', 'dpc', 'dragCallback', 'dropCallback', 'vcc', 'visibleChangeCommand'):
+    for key in ('dgc', 'dpc', 'dragCallback', 'dropCallback', 'rbc', 'rebuildCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -2687,7 +2687,7 @@ def nodeIconButton(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('c', 'command', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'vcc', 'visibleChangeCommand'):
+    for key in ('c', 'command', 'dgc', 'dpc', 'dragCallback', 'dropCallback', 'rtc', 'runTimeCommand', 'vcc', 'visibleChangeCommand'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -3172,7 +3172,7 @@ def hotkey(*args, **kwargs):
         doPassSelf = kwargs.pop('passSelf', False)
     else:
         doPassSelf = False
-    for key in ('cmd', 'commandModifier', 'pcr', 'pressCommandRepeat', 'rcr', 'releaseCommandRepeat'):
+    for key in ('cmd', 'cn', 'commandModifier', 'commandName', 'pcr', 'pressCommandRepeat', 'rcr', 'releaseCommandRepeat'):
         try:
             cb = kwargs[key]
             if callable(cb):
@@ -3681,7 +3681,5 @@ def workspaceControl(*args, **kwargs):
 workspaceControlState = _factories.getCmdFunc('workspaceControlState')
 
 workspaceLayoutManager = _factories.getCmdFunc('workspaceLayoutManager')
-
-workspacePanel = _factories.getCmdFunc('workspacePanel')
 
 autoLayout.__doc__ = formLayout.__doc__
