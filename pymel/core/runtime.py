@@ -4928,6 +4928,8 @@ SequencerSwapShotAfter = getattr(cmds, 'SequencerSwapShotAfter', None)
 
 SequencerSwapShotBefore = getattr(cmds, 'SequencerSwapShotBefore', None)
 
+SequencerToggleHoldMode = getattr(cmds, 'SequencerToggleHoldMode', None)
+
 SequencerToggleImagePlanes = getattr(cmds, 'SequencerToggleImagePlanes', None)
 
 SequencerTogglePlaybackSkipGaps = getattr(cmds, 'SequencerTogglePlaybackSkipGaps', None)
@@ -5376,9 +5378,29 @@ SinglePerspectiveViewLayout = getattr(cmds, 'SinglePerspectiveViewLayout', None)
 
 SingleViewArrangement = getattr(cmds, 'SingleViewArrangement', None)
 
+SkinToolsBrushSizeOff = getattr(cmds, 'SkinToolsBrushSizeOff', None)
+
+SkinToolsBrushSizeOn = getattr(cmds, 'SkinToolsBrushSizeOn', None)
+
+SkinToolsCycleWeightsDisplayMode = getattr(cmds, 'SkinToolsCycleWeightsDisplayMode', None)
+
 SkinToolsEditor = getattr(cmds, 'SkinToolsEditor', None)
 
+SkinToolsPaintFlood = getattr(cmds, 'SkinToolsPaintFlood', None)
+
 SkinToolsPaintWeightsTool = getattr(cmds, 'SkinToolsPaintWeightsTool', None)
+
+SkinToolsSampleInfluenceOff = getattr(cmds, 'SkinToolsSampleInfluenceOff', None)
+
+SkinToolsSampleInfluenceOn = getattr(cmds, 'SkinToolsSampleInfluenceOn', None)
+
+SkinToolsSetBrushIntensity = getattr(cmds, 'SkinToolsSetBrushIntensity', None)
+
+SkinToolsToggleHelp = getattr(cmds, 'SkinToolsToggleHelp', None)
+
+SkinToolsToggleOriginalMesh = getattr(cmds, 'SkinToolsToggleOriginalMesh', None)
+
+SkinToolsViewFitInfluence = getattr(cmds, 'SkinToolsViewFitInfluence', None)
 
 SlideEdgeTool = getattr(cmds, 'SlideEdgeTool', None)
 
@@ -6583,6 +6605,100 @@ cacheAppendOpt = getattr(cmds, 'cacheAppendOpt', None)
 clearDynStartState = getattr(cmds, 'clearDynStartState', None)
 
 clearNClothStartState = getattr(cmds, 'clearNClothStartState', None)
+
+cmdArnoldAlembicExportAll = getattr(cmds, 'cmdArnoldAlembicExportAll', None)
+
+cmdArnoldAlembicExportSelection = getattr(cmds, 'cmdArnoldAlembicExportSelection', None)
+
+cmdArnoldAreaLights = getattr(cmds, 'cmdArnoldAreaLights', None)
+
+cmdArnoldBakeGeo = getattr(cmds, 'cmdArnoldBakeGeo', None)
+
+cmdArnoldCreateStandIn = getattr(cmds, 'cmdArnoldCreateStandIn', None)
+
+cmdArnoldCreateStandInFile = getattr(cmds, 'cmdArnoldCreateStandInFile', None)
+
+cmdArnoldDenoise = getattr(cmds, 'cmdArnoldDenoise', None)
+
+cmdArnoldExportAllStandIn = getattr(cmds, 'cmdArnoldExportAllStandIn', None)
+
+cmdArnoldExportOperators = getattr(cmds, 'cmdArnoldExportOperators', None)
+
+cmdArnoldExportSelectedStandIn = getattr(cmds, 'cmdArnoldExportSelectedStandIn', None)
+
+cmdArnoldExportSelectedToMaterialx = getattr(cmds, 'cmdArnoldExportSelectedToMaterialx', None)
+
+cmdArnoldExportShaders = getattr(cmds, 'cmdArnoldExportShaders', None)
+
+cmdArnoldFlushAll = getattr(cmds, 'cmdArnoldFlushAll', None)
+
+cmdArnoldFlushBackground = getattr(cmds, 'cmdArnoldFlushBackground', None)
+
+cmdArnoldFlushQuads = getattr(cmds, 'cmdArnoldFlushQuads', None)
+
+cmdArnoldFlushSelectedTextures = getattr(cmds, 'cmdArnoldFlushSelectedTextures', None)
+
+cmdArnoldFlushTexture = getattr(cmds, 'cmdArnoldFlushTexture', None)
+
+cmdArnoldImportOperators = getattr(cmds, 'cmdArnoldImportOperators', None)
+
+cmdArnoldImportShaders = getattr(cmds, 'cmdArnoldImportShaders', None)
+
+cmdArnoldMeshLight = getattr(cmds, 'cmdArnoldMeshLight', None)
+
+cmdArnoldMtoALogWindow = getattr(cmds, 'cmdArnoldMtoALogWindow', None)
+
+cmdArnoldMtoARenderView = getattr(cmds, 'cmdArnoldMtoARenderView', None)
+
+cmdArnoldReloadShaders = getattr(cmds, 'cmdArnoldReloadShaders', None)
+
+cmdArnoldRender = getattr(cmds, 'cmdArnoldRender', None)
+
+cmdArnoldRenderToTexture = getattr(cmds, 'cmdArnoldRenderToTexture', None)
+
+cmdArnoldTxManager = getattr(cmds, 'cmdArnoldTxManager', None)
+
+cmdArnoldUpdateTx = getattr(cmds, 'cmdArnoldUpdateTx', None)
+
+cmdArnoldUsdExportAll = getattr(cmds, 'cmdArnoldUsdExportAll', None)
+
+cmdArnoldUsdExportSelection = getattr(cmds, 'cmdArnoldUsdExportSelection', None)
+
+cmdArnoldVolume = getattr(cmds, 'cmdArnoldVolume', None)
+
+cmdCurveCollector = getattr(cmds, 'cmdCurveCollector', None)
+
+cmdFlowRenderJobMonitor = getattr(cmds, 'cmdFlowRenderJobMonitor', None)
+
+cmdFlowRenderSubmitOptions = getattr(cmds, 'cmdFlowRenderSubmitOptions', None)
+
+cmdLightPortal = getattr(cmds, 'cmdLightPortal', None)
+
+cmdPhotometricLights = getattr(cmds, 'cmdPhotometricLights', None)
+
+cmdPhysicalSky = getattr(cmds, 'cmdPhysicalSky', None)
+
+cmdSkydomeLight = getattr(cmds, 'cmdSkydomeLight', None)
+
+cmdaiCollection = getattr(cmds, 'cmdaiCollection', None)
+
+cmdaiDisable = getattr(cmds, 'cmdaiDisable', None)
+
+cmdaiIncludeGraph = getattr(cmds, 'cmdaiIncludeGraph', None)
+
+cmdaiLookSwitch = getattr(cmds, 'cmdaiLookSwitch', None)
+
+cmdaiMaterialx = getattr(cmds, 'cmdaiMaterialx', None)
+
+cmdaiMerge = getattr(cmds, 'cmdaiMerge', None)
+
+cmdaiSetParameter = getattr(cmds, 'cmdaiSetParameter', None)
+
+cmdaiSetTransform = getattr(cmds, 'cmdaiSetTransform', None)
+
+cmdaiStringReplace = getattr(cmds, 'cmdaiStringReplace', None)
+
+cmdaiSwitchOperator = getattr(cmds, 'cmdaiSwitchOperator', None)
 
 deleteGeometryCache = getattr(cmds, 'deleteGeometryCache', None)
 

@@ -5,6 +5,22 @@ What's New
 **********
 
 ==================================
+Version 1.7.1
+==================================
+
+Additions
+----------------------------------
+- Added support for Maya 2027.1
+
+----------------------------------
+Misc
+----------------------------------
+- Bumping package versions according to dependabot alerts
+- Use UV as main tool for building commands
+
+
+
+==================================
 Version 1.7.0
 ==================================
 

@@ -20052,6 +20052,11 @@ class THsurfaceShape(SurfaceShape):
     __slots__ = ()
 
 
+class AiVolume(THsurfaceShape):
+    __melnode__ = 'aiVolume'
+    __slots__ = ()
+
+
 class FluidShape(SurfaceShape):
     __apicls__ = _api.MFnFluid
     __melnode__ = 'fluidShape'
@@ -25534,7 +25539,7 @@ class KeyingGroup(ObjectSet):
 
     @_f.addMelDocs('keyingGroup', 'ordered')
     def getOrdered(self, **kwargs):
-        # type: (...) -> Any
+        # type: (...) -> bool
         res = _f.asQuery(self, animation.keyingGroup, kwargs, 'ordered')
         return res
 
@@ -25607,6 +25612,11 @@ class KeyingGroup(ObjectSet):
     def setMinimizeRotation(self, val=True, **kwargs):
         # type: (bool | int, **Any) -> None
         return _f.asEdit(self, animation.keyingGroup, kwargs, 'minimizeRotation', val)
+
+    @_f.addMelDocs('keyingGroup', 'ordered')
+    def setOrdered(self, val=True, **kwargs):
+        # type: (bool | int, **Any) -> None
+        return _f.asEdit(self, animation.keyingGroup, kwargs, 'ordered', val)
 
     @_f.addMelDocs('keyingGroup', 'setActiveFilter')
     def setSetActiveFilter(self, val=True, **kwargs):
@@ -45550,6 +45560,12 @@ class SequenceManager(DependNode):
         res = _f.asQuery(self, animation.sequenceManager, kwargs, 'dedicatedModelPanel')
         return res
 
+    @_f.addMelDocs('sequenceManager', 'enableDetermineTrack')
+    def getEnableDetermineTrack(self, **kwargs):
+        # type: (...) -> int
+        res = _f.asQuery(self, animation.sequenceManager, kwargs, 'enableDetermineTrack')
+        return res
+
     @_f.addMelDocs('sequenceManager', 'modelPanel')
     def getModelPanel(self, **kwargs):
         # type: (...) -> Any
@@ -45589,6 +45605,11 @@ class SequenceManager(DependNode):
         res = _f.getProxyResult(self, _api.MFnDependencyNode, 'setAlias', final_do)
         res = _f.ApiArgUtil._castResult(self, res, 'bool', None)
         return res
+
+    @_f.addMelDocs('sequenceManager', 'enableDetermineTrack')
+    def setEnableDetermineTrack(self, val=True, **kwargs):
+        # type: (int, **Any) -> None
+        return _f.asEdit(self, animation.sequenceManager, kwargs, 'enableDetermineTrack', val)
 
     @_f.addMelDocs('sequenceManager', 'syncTimelineToShot')
     def setSyncTimelineToShot(self, val=True, **kwargs):
@@ -48057,6 +48078,12 @@ class Shot(DependNode):
         res = _f.asQuery(self, animation.shot, kwargs, 'flag9')
         return res
 
+    @_f.addMelDocs('shot', 'group')
+    def getGroup(self, **kwargs):
+        # type: (...) -> Any
+        res = _f.asQuery(self, animation.shot, kwargs, 'group')
+        return res
+
     @_f.addMelDocs('shot', 'hasCameraSet')
     def getHasCameraSet(self, **kwargs):
         # type: (...) -> bool
@@ -49748,6 +49775,12 @@ class TimeEditor(DependNode):
     def getMute(self, **kwargs):
         # type: (...) -> Any
         res = _f.asQuery(self, animation.timeEditor, kwargs, 'mute')
+        return res
+
+    @_f.addMelDocs('timeEditor', 'muteAudio')
+    def getMuteAudio(self, **kwargs):
+        # type: (...) -> Any
+        res = _f.asQuery(self, animation.timeEditor, kwargs, 'muteAudio')
         return res
 
 

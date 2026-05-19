@@ -13354,6 +13354,12 @@ class HyperGraph(PyUI):
         res = _f.asQuery(self, windows.hyperGraph, kwargs, 'showInvisible')
         return res
 
+    @_f.addMelDocs('hyperGraph', 'showNamespace')
+    def getShowNamespace(self, **kwargs):
+        # type: (...) -> bool
+        res = _f.asQuery(self, windows.hyperGraph, kwargs, 'showNamespace')
+        return res
+
     @_f.addMelDocs('hyperGraph', 'showRelationships')
     def getShowRelationships(self, **kwargs):
         # type: (...) -> bool
@@ -13704,6 +13710,11 @@ class HyperGraph(PyUI):
     def setShowInvisible(self, val=True, **kwargs):
         # type: (bool | int, **Any) -> None
         return _f.asEdit(self, windows.hyperGraph, kwargs, 'showInvisible', val)
+
+    @_f.addMelDocs('hyperGraph', 'showNamespace')
+    def setShowNamespace(self, val=True, **kwargs):
+        # type: (bool | int, **Any) -> None
+        return _f.asEdit(self, windows.hyperGraph, kwargs, 'showNamespace', val)
 
     @_f.addMelDocs('hyperGraph', 'showRelationships')
     def setShowRelationships(self, val=True, **kwargs):
