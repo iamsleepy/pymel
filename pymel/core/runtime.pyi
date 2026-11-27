@@ -435,6 +435,7 @@ CreateCurveFromPolyOptions: Incomplete
 CreateCustomSet: Incomplete
 CreateDagContainer: Incomplete
 CreateDagContainerOptions: Incomplete
+CreateDgaSetup: Incomplete
 CreateDirectionalLight: Incomplete
 CreateDirectionalLightOptions: Incomplete
 CreateDiskCache: Incomplete
@@ -3316,6 +3317,8 @@ cmdArnoldFlushBackground: Incomplete
 cmdArnoldFlushQuads: Incomplete
 cmdArnoldFlushSelectedTextures: Incomplete
 cmdArnoldFlushTexture: Incomplete
+cmdArnoldGaussianSplat: Incomplete
+cmdArnoldGaussianSplatFile: Incomplete
 cmdArnoldImportOperators: Incomplete
 cmdArnoldImportShaders: Incomplete
 cmdArnoldMeshLight: Incomplete
@@ -3329,9 +3332,12 @@ cmdArnoldUpdateTx: Incomplete
 cmdArnoldUsdExportAll: Incomplete
 cmdArnoldUsdExportSelection: Incomplete
 cmdArnoldVolume: Incomplete
+cmdArnoldVolumeMakeLODs: Incomplete
 cmdCurveCollector: Incomplete
 cmdFlowRenderJobMonitor: Incomplete
 cmdFlowRenderSubmitOptions: Incomplete
+cmdFlowRenderSubmitTextureBakingJob: Incomplete
+cmdFlowRenderSubmitTurnTableJob: Incomplete
 cmdLightPortal: Incomplete
 cmdPhotometricLights: Incomplete
 cmdPhysicalSky: Incomplete
@@ -3378,9 +3384,12 @@ geometryReplaceCacheFrames: Incomplete
 geometryReplaceCacheFramesOpt: Incomplete
 geometryReplaceCacheOpt: Incomplete
 mayaPreviewRenderIntoNewWindow: Incomplete
+mayaUsdCreateComponent: Incomplete
+mayaUsdCreateComponentOptions: Incomplete
 mayaUsdCreateStageFromFile: Incomplete
 mayaUsdCreateStageFromFileOptions: Incomplete
 mayaUsdCreateStageWithNewLayer: Incomplete
+mayaUsdOpenCompositionEditor: Incomplete
 mayaUsdOpenUsdLayerEditor: Incomplete
 mayaUsdPointInstancesPickMode_Instances: Incomplete
 mayaUsdPointInstancesPickMode_PointInstancer: Incomplete

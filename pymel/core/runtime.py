@@ -878,6 +878,8 @@ CreateDagContainer = getattr(cmds, 'CreateDagContainer', None)
 
 CreateDagContainerOptions = getattr(cmds, 'CreateDagContainerOptions', None)
 
+CreateDgaSetup = getattr(cmds, 'CreateDgaSetup', None)
+
 CreateDirectionalLight = getattr(cmds, 'CreateDirectionalLight', None)
 
 CreateDirectionalLightOptions = getattr(cmds, 'CreateDirectionalLightOptions', None)
@@ -6640,6 +6642,10 @@ cmdArnoldFlushSelectedTextures = getattr(cmds, 'cmdArnoldFlushSelectedTextures',
 
 cmdArnoldFlushTexture = getattr(cmds, 'cmdArnoldFlushTexture', None)
 
+cmdArnoldGaussianSplat = getattr(cmds, 'cmdArnoldGaussianSplat', None)
+
+cmdArnoldGaussianSplatFile = getattr(cmds, 'cmdArnoldGaussianSplatFile', None)
+
 cmdArnoldImportOperators = getattr(cmds, 'cmdArnoldImportOperators', None)
 
 cmdArnoldImportShaders = getattr(cmds, 'cmdArnoldImportShaders', None)
@@ -6666,11 +6672,17 @@ cmdArnoldUsdExportSelection = getattr(cmds, 'cmdArnoldUsdExportSelection', None)
 
 cmdArnoldVolume = getattr(cmds, 'cmdArnoldVolume', None)
 
+cmdArnoldVolumeMakeLODs = getattr(cmds, 'cmdArnoldVolumeMakeLODs', None)
+
 cmdCurveCollector = getattr(cmds, 'cmdCurveCollector', None)
 
 cmdFlowRenderJobMonitor = getattr(cmds, 'cmdFlowRenderJobMonitor', None)
 
 cmdFlowRenderSubmitOptions = getattr(cmds, 'cmdFlowRenderSubmitOptions', None)
+
+cmdFlowRenderSubmitTextureBakingJob = getattr(cmds, 'cmdFlowRenderSubmitTextureBakingJob', None)
+
+cmdFlowRenderSubmitTurnTableJob = getattr(cmds, 'cmdFlowRenderSubmitTurnTableJob', None)
 
 cmdLightPortal = getattr(cmds, 'cmdLightPortal', None)
 
@@ -6764,11 +6776,17 @@ geometryReplaceCacheOpt = getattr(cmds, 'geometryReplaceCacheOpt', None)
 
 mayaPreviewRenderIntoNewWindow = getattr(cmds, 'mayaPreviewRenderIntoNewWindow', None)
 
+mayaUsdCreateComponent = getattr(cmds, 'mayaUsdCreateComponent', None)
+
+mayaUsdCreateComponentOptions = getattr(cmds, 'mayaUsdCreateComponentOptions', None)
+
 mayaUsdCreateStageFromFile = getattr(cmds, 'mayaUsdCreateStageFromFile', None)
 
 mayaUsdCreateStageFromFileOptions = getattr(cmds, 'mayaUsdCreateStageFromFileOptions', None)
 
 mayaUsdCreateStageWithNewLayer = getattr(cmds, 'mayaUsdCreateStageWithNewLayer', None)
+
+mayaUsdOpenCompositionEditor = getattr(cmds, 'mayaUsdOpenCompositionEditor', None)
 
 mayaUsdOpenUsdLayerEditor = getattr(cmds, 'mayaUsdOpenUsdLayerEditor', None)
 

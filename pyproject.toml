@@ -1,6 +1,6 @@
 [project]
 name = "pymel"
-version = "1.7.1rc1"
+version = "1.7.2rc1"
 description = "Python in Maya Done Right"
 authors = [
     { name = "Chad Dombrova" },

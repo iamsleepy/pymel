@@ -91,15 +91,24 @@ v20024: int
 v2024: int
 v2024_1: int
 v2024_2: int
+v2024_21: int
+v2024_22: int
+v2024_23: int
+v2024_24: int
 v2025: int
 V2025_3: int
 v2025_31: int
+v2025_32: int
 v2026: int
 v2026_1: int
 v2026_2: int
 v2026_3: int
+v2026_31: int
+v2026_32: int
 v2027: int
 v2027_1: int
+v2027_2: int
+v2027_3: int
 
 def current() -> int: ...
 def fullName() -> str: ...

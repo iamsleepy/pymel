@@ -2725,6 +2725,8 @@ timerX = _factories.getCmdFunc('timerX')
 
 translator = _factories.getCmdFunc('translator')
 
+traxAudioTrack = _factories.getCmdFunc('traxAudioTrack')
+
 unassignInputDevice = _factories.getCmdFunc('unassignInputDevice')
 
 undo = _factories.getCmdFunc('undo')

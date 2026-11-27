@@ -6952,6 +6952,14 @@ class MeshEdge(MItComponent1D):
         raise TypeError('type %s is not supported' % type(component))
 # ------ Do not edit below this line --------
 
+    @_f.addApiDocs(_api.MItMeshEdge, 'getIncidentFaces')
+    def getIncidentFaces(self):
+        # type: (...) -> Tuple[int, List[int]]
+        do, final_do, outTypes = _f.getDoArgs([], [('faces', 'MIntArray', 'out', None)])
+        res = _f.getProxyResult(self, _api.MItMeshEdge, 'getIncidentFaces', final_do)
+        res = _f.ApiArgUtil._castResult(self, res, 'int', None)
+        return _f.processApiResult(res, outTypes, do)
+
     @_f.addApiDocs(_api.MItMeshEdge, 'getLength')
     def getLength(self, space='preTransform'):
         # type: (datatypes.Space.Space) -> float
@@ -8341,6 +8349,12 @@ Modifications:
         res = _f.getProxyResult(self, _api.MFnAttribute, 'isKeyable')
         return _f.ApiArgUtil._castResult(self, res, 'bool', None)
 
+    @_f.addApiDocs(_api.MFnAttribute, 'isNodeEditorPrimary')
+    def isNodeEditorPrimary(self):
+        # type: (...) -> bool
+        res = _f.getProxyResult(self, _api.MFnAttribute, 'isNodeEditorPrimary')
+        return _f.ApiArgUtil._castResult(self, res, 'bool', None)
+
     @_f.addApiDocs(_api.MFnAttribute, 'isProxyAttribute')
     def isProxyAttribute(self):
         # type: (...) -> bool
@@ -8512,6 +8526,14 @@ Modifications:
         # type: (str) -> None
         do, final_do, outTypes = _f.getDoArgs([localizedName], [('localizedName', 'MString', 'in', None)])
         res = _f.getProxyResult(self, _api.MFnAttribute, 'setNiceNameOverride', final_do)
+        return res
+
+    @_f.addApiDocs(_api.MFnAttribute, 'setNodeEditorPrimary')
+    def setNodeEditorPrimary(self, state):
+        # type: (bool) -> None
+        do, final_do, outTypes, undoItem = _f.getDoArgsGetterUndo([state], [('state', 'bool', 'in', None)], self.isNodeEditorPrimary, self.setNodeEditorPrimary, [])
+        res = _f.getProxyResult(self, _api.MFnAttribute, 'setNodeEditorPrimary', final_do)
+        if undoItem is not None: _f.apiUndo.append(undoItem)
         return res
 
     @_f.addApiDocs(_api.MFnAttribute, 'setProxyAttribute')

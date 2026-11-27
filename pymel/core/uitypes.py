@@ -5830,6 +5830,12 @@ class AnimCurveEditor(PyUI):
         res = _f.asQuery(self, animation.animCurveEditor, kwargs, 'showResults')
         return res
 
+    @_f.addMelDocs('animCurveEditor', 'showRowButtons')
+    def getShowRowButtons(self, **kwargs):
+        # type: (...) -> bool
+        res = _f.asQuery(self, animation.animCurveEditor, kwargs, 'showRowButtons')
+        return res
+
     @_f.addMelDocs('animCurveEditor', 'showUpstreamCurves')
     def getShowUpstreamCurves(self, **kwargs):
         # type: (...) -> bool
@@ -6077,6 +6083,11 @@ class AnimCurveEditor(PyUI):
     def setShowResults(self, val=True, **kwargs):
         # type: (_util.ProxyUnicode | str, **Any) -> None
         return _f.asEdit(self, animation.animCurveEditor, kwargs, 'showResults', val)
+
+    @_f.addMelDocs('animCurveEditor', 'showRowButtons')
+    def setShowRowButtons(self, val=True, **kwargs):
+        # type: (bool | int, **Any) -> None
+        return _f.asEdit(self, animation.animCurveEditor, kwargs, 'showRowButtons', val)
 
     @_f.addMelDocs('animCurveEditor', 'showUpstreamCurves')
     def setShowUpstreamCurves(self, val=True, **kwargs):

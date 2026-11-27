@@ -116,10 +116,8 @@ Building an Official PyMEL Release
 
     ```python
     plugins = [
-      'bifrostGraph', # not strictly necessary, but maya will load much faster
       'lookdevKit',
       'modelingToolkit',
-      'mtoa',
       'renderSetup',
       'Type',
       'VectorRender', # will cause crash later when querying cmds.allNodeTypes
@@ -138,11 +136,13 @@ Building an Official PyMEL Release
   - in the script editor, run the following, substituting location of your dev
     version of pymel:
 
-    ```python
-    import sys
+  ````python
     import os
-    pymelPath = r'C:\Projects\Dev\pymel'   # ...or wherever YOUR pymel version is installed
+    import sys
+    
+    pymelPath = r'D:\cases\pymel'   # ...or wherever YOUR pymel version is installed
     os.environ['MAYA_DOC_DIR'] = os.path.join(pymelPath, '.mayaDocs')
+    #os.environ['PYMEL_LOGLEVEL'] = 'DEBUG'
     pymelInit = os.path.join(pymelPath, 'pymel', '__init__.py')
     if not os.path.isfile(pymelInit):
         raise RuntimeError('invalid pymel path: %s' % pymelPath)
@@ -156,18 +156,22 @@ Building an Official PyMEL Release
     import pymel
     assert pymel.__file__.startswith(pymelInit)
     print(pymel.__file__)
-
-    # for some reason, renderSetup.mll is always force-loaded; further, if
-    # unloaded automatically by pymel, it seems to trigger a crash - but if
-    # explicitly unloaded first, it seems to be ok
+    
     import maya.cmds as cmds
-    cmds.unloadPlugin('renderSetup')
-
+    
+    # Remove USD render node first
+    # Note, you'll need a latest build of maya-usd (>0.38) for Maya 2027. There is a bug will cause Maya crash when unloading maya-usd
+    usd_node = 'UsdDefaultRenderDescription'
+    if cmds.objExists(usd_node):
+        cmds.lockNode(usd_node, lock=False)
+        cmds.delete(usd_node)
+        cmds.flushUndo()
     import pymel.internal.factories
-
+    
     # force loading + building of cmd caches
     pymel.internal.factories.loadCmdCache()
-    ```
+  ````
+
 
 - this will likely CRASH when it finished running... thankfully, this is generally ok, and the cmd caches have generally
   been written out successfully already (you can confirm by checking for their existence - since you deleted them

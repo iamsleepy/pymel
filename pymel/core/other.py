@@ -697,6 +697,8 @@ def imageWindowEditor(*args, **kwargs):
     res = cmds.imageWindowEditor(*args, **kwargs)
     return res
 
+initializeMCP = _factories.getCmdFunc('initializeMCP')
+
 interactionStyle = _factories.getCmdFunc('interactionStyle')
 
 iterOnNurbs = _factories.getCmdFunc('iterOnNurbs')
@@ -710,6 +712,8 @@ manipComponentPivot = _factories.getCmdFunc('manipComponentPivot')
 manipComponentUpdate = _factories.getCmdFunc('manipComponentUpdate')
 
 mayaDpiSettingAction = _factories.getCmdFunc('mayaDpiSettingAction')
+
+mcpBridge = _factories.getCmdFunc('mcpBridge')
 
 meshIntersectTest = _factories.getCmdFunc('meshIntersectTest')
 
